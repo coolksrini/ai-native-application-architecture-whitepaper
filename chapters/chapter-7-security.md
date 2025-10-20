@@ -1402,4 +1402,4 @@ for test in security_tests:
 
 ---
 
-**[← Previous: Chapter 6 - UI Layer](chapter-6-ui-layer) | [Next: Chapter 8 - Context Management →](chapter-8-context)**
+**[← Previous: Chapter 6 - UI Layer](chapter-6-ui-layer.md) | [Next: Chapter 8 - Context Management →](chapter-8-context.md)**

@@ -1318,4 +1318,4 @@ Based on user's role, history, and preferences
 
 ---
 
-**[← Previous: Chapter 5 - MCP Microservices](chapter-5-mcp-microservices) | [Next: Chapter 7 - Security →](chapter-7-security)**
+**[← Previous: Chapter 5 - MCP Microservices](chapter-5-mcp-microservices.md) | [Next: Chapter 7 - Security →](chapter-7-security.md)**

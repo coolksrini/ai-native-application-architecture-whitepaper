@@ -2880,4 +2880,4 @@ class ProductionDataCollector:
 
 ---
 
-**[← Previous: Chapter 9 - Analytics](chapter-9-analytics) | [Next: Chapter 11 - Training →](chapter-11-training)**
+**[← Previous: Chapter 9 - Analytics](chapter-9-analytics.md) | [Next: Chapter 11 - Training →](chapter-11-training.md)**

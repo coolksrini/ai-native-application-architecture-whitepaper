@@ -666,4 +666,4 @@ class HealthcareAI:
 
 ---
 
-**[← Previous: Chapter 13 - Frameworks](chapter-13-frameworks) | [Next: Chapter 15 - The Road Ahead →](chapter-15-conclusion)**
+**[← Previous: Chapter 13 - Frameworks](chapter-13-frameworks.md) | [Next: Chapter 15 - The Road Ahead →](chapter-15-conclusion.md)**

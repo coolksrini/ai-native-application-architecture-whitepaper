@@ -2776,4 +2776,4 @@ class TrainingDataQuality:
 
 ---
 
-**[← Previous: Chapter 10 - Testing](chapter-10-testing) | [Next: Chapter 12 - Migration →](chapter-12-migration)**
+**[← Previous: Chapter 10 - Testing](chapter-10-testing.md) | [Next: Chapter 12 - Migration →](chapter-12-migration.md)**

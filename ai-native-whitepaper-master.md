@@ -71,33 +71,33 @@ The current discourse often frames "MCP services" as alternatives to microservic
 ### Part I: The Transformation (10 pages)
 Understanding the paradigm shift and what it means for application architecture.
 
-- **[Chapter 1: The AI-Native Paradigm Shift](#chapter-1)** - From hardcoded interactions to intent-driven orchestration
-- **[Chapter 2: What Changes](#chapter-2)** - API protocols, UI layer, analytics, testing
-- **[Chapter 3: What Remains](#chapter-3)** - Microservices, business logic, infrastructure
-- **[Chapter 4: What's Entirely New](#chapter-4)** - Model training, intent management, context handling
+- **[Chapter 1: The AI-Native Paradigm Shift](chapters/chapter-1-paradigm-shift.md)** - From hardcoded interactions to intent-driven orchestration
+- **[Chapter 2: What Changes](chapters/chapter-2-what-changes.md)** - API protocols, UI layer, analytics, testing
+- **[Chapter 3: What Remains](chapters/chapter-3-what-remains.md)** - Microservices, business logic, infrastructure
+- **[Chapter 4: What's Entirely New](chapters/chapter-4-whats-new.md)** - Model training, intent management, context handling
 
 ### Part II: The Architecture (15 pages)
 Deep dive into the technical architecture of AI-native systems.
 
-- **[Chapter 5: MCP-Enabled Microservices](#chapter-5)** - How microservices evolve to speak MCP
-- **[Chapter 6: The Death of Traditional UI](#chapter-6)** - Dynamic rendering and the hybrid reality
-- **[Chapter 7: Security in the AI Era](#chapter-7)** - Triple-layer authorization and threat models
-- **[Chapter 8: Context & State Management](#chapter-8)** - Handling finite context windows
+- **[Chapter 5: MCP-Enabled Microservices](chapters/chapter-5-mcp-microservices.md)** - How microservices evolve to speak MCP
+- **[Chapter 6: The Death of Traditional UI](chapters/chapter-6-ui-layer.md)** - Dynamic rendering and the hybrid reality
+- **[Chapter 7: Security in the AI Era](chapters/chapter-7-security.md)** - Triple-layer authorization and threat models
+- **[Chapter 8: Context & State Management](chapters/chapter-8-context.md)** - Handling finite context windows
 
 ### Part III: The Operational Reality (15 pages)
 How day-to-day operations change in AI-native development.
 
-- **[Chapter 9: Analytics & Observability](#chapter-9)** - From clicks to conversations
-- **[Chapter 10: Testing & Quality Assurance](#chapter-10)** - Probabilistic testing and scenario-based evaluation
-- **[Chapter 11: Training & Fine-Tuning](#chapter-11)** - Enterprise model accuracy requirements
+- **[Chapter 9: Analytics & Observability](chapters/chapter-9-analytics.md)** - From clicks to conversations
+- **[Chapter 10: Testing & Quality Assurance](chapters/chapter-10-testing.md)** - Probabilistic testing and scenario-based evaluation
+- **[Chapter 11: Training & Fine-Tuning](chapters/chapter-11-training.md)** - Enterprise model accuracy requirements
 
 ### Part IV: The Implementation (10 pages)
 Practical guidance for building and migrating to AI-native architecture.
 
-- **[Chapter 12: The Migration Path](#chapter-12)** - Phase-based approach from traditional to AI-native
-- **[Chapter 13: Framework Evolution](#chapter-13)** - What modern frameworks need to support
-- **[Chapter 14: Case Studies](#chapter-14)** - Real-world examples and lessons learned
-- **[Chapter 15: The Road Ahead](#chapter-15)** - Organizational transformation and future directions
+- **[Chapter 12: The Migration Path](chapters/chapter-12-migration.md)** - Phase-based approach from traditional to AI-native
+- **[Chapter 13: Framework Evolution](chapters/chapter-13-frameworks.md)** - What modern frameworks need to support
+- **[Chapter 14: Case Studies](chapters/chapter-14-case-studies.md)** - Real-world examples and lessons learned
+- **[Chapter 15: The Road Ahead](chapters/chapter-15-conclusion.md)** - Organizational transformation and future directions
 
 ---
 
@@ -248,13 +248,13 @@ This white paper synthesizes insights from:
 
 ## Navigation
 
-**[Begin with Chapter 1: The AI-Native Paradigm Shift →](#chapter-1)**
+**[Begin with Chapter 1: The AI-Native Paradigm Shift →](chapters/chapter-1-paradigm-shift.md)**
 
-Or jump to a specific section:
-- [Part I: The Transformation](#part-i)
-- [Part II: The Architecture](#part-ii)
-- [Part III: The Operational Reality](#part-iii)
-- [Part IV: The Implementation](#part-iv)
+Or jump to a specific part:
+- **Part I: The Transformation** - [Chapter 1](chapters/chapter-1-paradigm-shift.md) | [Chapter 2](chapters/chapter-2-what-changes.md) | [Chapter 3](chapters/chapter-3-what-remains.md) | [Chapter 4](chapters/chapter-4-whats-new.md)
+- **Part II: The Architecture** - [Chapter 5](chapters/chapter-5-mcp-microservices.md) | [Chapter 6](chapters/chapter-6-ui-layer.md) | [Chapter 7](chapters/chapter-7-security.md) | [Chapter 8](chapters/chapter-8-context.md)
+- **Part III: The Operational Reality** - [Chapter 9](chapters/chapter-9-analytics.md) | [Chapter 10](chapters/chapter-10-testing.md) | [Chapter 11](chapters/chapter-11-training.md)
+- **Part IV: The Implementation** - [Chapter 12](chapters/chapter-12-migration.md) | [Chapter 13](chapters/chapter-13-frameworks.md) | [Chapter 14](chapters/chapter-14-case-studies.md) | [Chapter 15](chapters/chapter-15-conclusion.md)
 
 ---
 

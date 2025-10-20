@@ -1672,4 +1672,4 @@ Thank you to everyone pushing this field forward.
 
 ---
 
-**[← Previous: Chapter 14 - Case Studies](chapter-14-case-studies) | [Return to Master Summary](ai-native-whitepaper-master)**
+**[← Previous: Chapter 14 - Case Studies](chapter-14-case-studies.md) | [Return to Master Summary](../ai-native-whitepaper-master.md)**

@@ -924,4 +924,4 @@ Production teams typically set statistical thresholds based on operation critica
 
 ---
 
-**[← Previous: Chapter 1 - Paradigm Shift](chapter-1-paradigm-shift) | [Next: Chapter 3 - What Remains →](chapter-3-what-remains)**
+**[← Previous: Chapter 1 - Paradigm Shift](chapter-1-paradigm-shift.md) | [Next: Chapter 3 - What Remains →](chapter-3-what-remains.md)**

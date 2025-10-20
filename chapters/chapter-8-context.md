@@ -1127,4 +1127,4 @@ TIER 4: Reference Data (0 tokens)
 
 ---
 
-**[← Previous: Chapter 7 - Security](chapter-7-security) | [Next: Chapter 9 - Analytics →](chapter-9-analytics)**
+**[← Previous: Chapter 7 - Security](chapter-7-security.md) | [Next: Chapter 9 - Analytics →](chapter-9-analytics.md)**

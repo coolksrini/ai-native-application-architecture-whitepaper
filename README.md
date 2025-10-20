@@ -31,27 +31,27 @@ AI-native applications aren't a new architecture—they're the same microservice
 Complete executive summary and navigation guide
 
 ### Part I: The Transformation
-- [Chapter 1: The AI-Native Paradigm Shift](chapter-1-paradigm-shift.md)
-- [Chapter 2: What Changes](chapter-2-what-changes.md)
-- [Chapter 3: What Remains](chapter-3-what-remains.md)
-- [Chapter 4: What's Entirely New](chapter-4-whats-new.md)
+- [Chapter 1: The AI-Native Paradigm Shift](chapters/chapter-1-paradigm-shift.md)
+- [Chapter 2: What Changes](chapters/chapter-2-what-changes.md)
+- [Chapter 3: What Remains](chapters/chapter-3-what-remains.md)
+- [Chapter 4: What's Entirely New](chapters/chapter-4-whats-new.md)
 
 ### Part II: The Architecture
-- [Chapter 5: MCP-Enabled Microservices](chapter-5-mcp-microservices.md)
-- [Chapter 6: The Death of Traditional UI](chapter-6-ui-layer.md)
-- [Chapter 7: Security in the AI Era](chapter-7-security.md)
-- [Chapter 8: Context & State Management](chapter-8-context.md)
+- [Chapter 5: MCP-Enabled Microservices](chapters/chapter-5-mcp-microservices.md)
+- [Chapter 6: The Death of Traditional UI](chapters/chapter-6-ui-layer.md)
+- [Chapter 7: Security in the AI Era](chapters/chapter-7-security.md)
+- [Chapter 8: Context & State Management](chapters/chapter-8-context.md)
 
 ### Part III: The Operational Reality
-- [Chapter 9: Analytics & Observability](chapter-9-analytics.md)
-- [Chapter 10: Testing & Quality Assurance](chapter-10-testing.md)
-- [Chapter 11: Training & Fine-Tuning](chapter-11-training.md)
+- [Chapter 9: Analytics & Observability](chapters/chapter-9-analytics.md)
+- [Chapter 10: Testing & Quality Assurance](chapters/chapter-10-testing.md)
+- [Chapter 11: Training & Fine-Tuning](chapters/chapter-11-training.md)
 
 ### Part IV: The Implementation
-- [Chapter 12: The Migration Path](chapter-12-migration.md)
-- [Chapter 13: Framework Evolution](chapter-13-frameworks.md)
-- [Chapter 14: Case Studies](chapter-14-case-studies.md)
-- [Chapter 15: The Road Ahead](chapter-15-road-ahead.md)
+- [Chapter 12: The Migration Path](chapters/chapter-12-migration.md)
+- [Chapter 13: Framework Evolution](chapters/chapter-13-frameworks.md)
+- [Chapter 14: Case Studies](chapters/chapter-14-case-studies.md)
+- [Chapter 15: The Road Ahead](chapters/chapter-15-conclusion.md)
 
 ---
 
@@ -166,16 +166,16 @@ The patterns described in this paper are validated by existing AI-native applica
 ## 📖 Reading Guide
 
 ### If You're New to AI-Native Development
-Start with [Part I](ai-native-whitepaper-master.md#part-i) (Chapters 1-4) to understand the paradigm shift, then read [Chapter 14](chapter-14-case-studies.md) (Case Studies) to see concrete examples.
+Start with [Part I](ai-native-whitepaper-master.md#part-i) (Chapters 1-4) to understand the paradigm shift, then read [Chapter 14](chapters/chapter-14-case-studies.md) (Case Studies) to see concrete examples.
 
 ### If You're Architecting a New System
 Focus on [Part II](ai-native-whitepaper-master.md#part-ii) (Chapters 5-8) for architectural patterns, then [Part IV](ai-native-whitepaper-master.md#part-iv) (Chapters 12-13) for implementation guidance.
 
 ### If You're Migrating an Existing System
-Read [Chapter 12](chapter-12-migration.md) (Migration Path) first, then [Part III](ai-native-whitepaper-master.md#part-iii) (Chapters 9-11) for operational concerns.
+Read [Chapter 12](chapters/chapter-12-migration.md) (Migration Path) first, then [Part III](ai-native-whitepaper-master.md#part-iii) (Chapters 9-11) for operational concerns.
 
 ### If You're Building Framework Support
-[Chapter 13](chapter-13-frameworks.md) (Framework Evolution) is your starting point, followed by Chapters 7, 10, and 11 for security, testing, and training requirements.
+[Chapter 13](chapters/chapter-13-frameworks.md) (Framework Evolution) is your starting point, followed by [Chapter 7](chapters/chapter-7-security.md), [Chapter 10](chapters/chapter-10-testing.md), and [Chapter 11](chapters/chapter-11-training.md) for security, testing, and training requirements.
 
 ---
 

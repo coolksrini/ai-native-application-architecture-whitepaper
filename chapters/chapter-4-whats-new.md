@@ -1162,4 +1162,4 @@ Traditional software requires 100% correctness (or it's a bug). AI-native softwa
 
 ---
 
-**[← Previous: Chapter 3 - What Remains](chapter-3-what-remains) | [Next: Chapter 5 - MCP-Enabled Microservices →](chapter-5-mcp-microservices)**
+**[← Previous: Chapter 3 - What Remains](chapter-3-what-remains.md) | [Next: Chapter 5 - MCP-Enabled Microservices →](chapter-5-mcp-microservices.md)**

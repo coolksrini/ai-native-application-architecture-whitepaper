@@ -1040,4 +1040,4 @@ Difficulty: Low
 
 ---
 
-**[← Previous: Chapter 12 - Migration](chapter-12-migration) | [Next: Chapter 14 - Case Studies →](chapter-14-case-studies)**
+**[← Previous: Chapter 12 - Migration](chapter-12-migration.md) | [Next: Chapter 14 - Case Studies →](chapter-14-case-studies.md)**

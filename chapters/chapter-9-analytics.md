@@ -1482,4 +1482,4 @@ Quality Indicators:
 
 ---
 
-**[← Previous: Chapter 8 - Context Management](chapter-8-context) | [Next: Chapter 10 - Testing →](chapter-10-testing)**
+**[← Previous: Chapter 8 - Context Management](chapter-8-context.md) | [Next: Chapter 10 - Testing →](chapter-10-testing.md)**

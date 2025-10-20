@@ -798,4 +798,4 @@ async def create_payment(amount: int, user_context: UserContext):
 
 ---
 
-**[← Previous: Chapter 2 - What Changes](chapter-2-what-changes) | [Next: Chapter 4 - What's Entirely New →](chapter-4-whats-new)**
+**[← Previous: Chapter 2 - What Changes](chapter-2-what-changes.md) | [Next: Chapter 4 - What's Entirely New →](chapter-4-whats-new.md)**

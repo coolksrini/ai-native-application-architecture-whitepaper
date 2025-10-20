@@ -608,4 +608,4 @@ The AI-native paradigm is not about replacing everything we've learned about sof
 
 ---
 
-**[← Back to Master Summary](ai-native-whitepaper-master) | [Next: Chapter 2 - What Changes →](chapter-2-what-changes)**
+**[← Back to Master Summary](../ai-native-whitepaper-master.md) | [Next: Chapter 2 - What Changes →](chapter-2-what-changes.md)**
