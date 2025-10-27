@@ -1,0 +1,91 @@
+sections:
+  - name: "LLM Role"
+    slides:
+      - id: llm_1
+        title: "The LLM: New Role in Architecture"
+        narration: |
+          Not just chatbot
+          Not just fancy search
+          The orchestration engine
+          The intent classifier
+          The decision maker
+          The UI renderer
+        duration: 25
+        content_type: "diagram"
+        content: |
+          LLM: From Chatbot to Architect
+          ═══════════════════════════════
+          
+          OLD MODEL (Chatbot)
+          ┌─────────────┐
+          │ User Query  │ → LLM → "Here's an answer"
+          └─────────────┘
+          
+          NEW MODEL (Orchestrator)
+          ┌─────────────┐
+          │ User Query  │
+          └──────┬──────┘
+                 ↓
+          ┌──────────────────────┐
+          │ Intent Classification │
+          │ (LLM decides what)    │
+          └──────┬───────────────┘
+                 ↓
+          ┌──────────────────────┐
+          │ Parameter Extraction │
+          │ (LLM extracts how)   │
+          └──────┬───────────────┘
+                 ↓
+          ┌──────────────────────┐
+          │ Service Selection    │
+          │ (LLM chooses which)  │
+          └──────┬───────────────┘
+                 ↓
+          ┌──────────────────────┐
+          │ Result Aggregation   │
+          │ (LLM combines data)  │
+          └──────┬───────────────┘
+                 ↓
+          ┌──────────────────────┐
+          │ UI Component Choose  │
+          │ (LLM renders how)    │
+          └──────┬───────────────┘
+                 ↓
+          ┌──────────────────────┐
+          │ Adaptive Response    │
+          │ Delivered to client  │
+          └──────────────────────┘
+      
+      - id: llm_2
+        title: "Step 1: User Query"
+        narration: |
+          User says: Show me gaming laptops under $2000
+          This is natural language, unstructured
+          LLM will process it.
+        duration: 20
+        content_type: "code"
+        content: |
+          USER INPUT (Natural Language)
+          ════════════════════════════
+          
+          "Show me gaming laptops under $2000
+           with RTX 4070 or better,
+           sorted by performance"
+          
+          This is:
+          ✓ Unstructured
+          ✓ Ambiguous
+          ✓ Complex
+          ✓ Human readable
+          
+          LLM receives this and must:
+          1. Understand intent (SEARCH)
+          2. Extract parameters
+             • category: gaming
+             • type: laptops
+             • max_price: 2000
+             • gpu_min: RTX4070
+             • sort_by: performance
+          3. Route to appropriate service
+          4. Format results
+          5. Choose UI component

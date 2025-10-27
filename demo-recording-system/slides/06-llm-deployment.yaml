@@ -1,0 +1,171 @@
+sections:
+  - name: "LLM Deployment"
+    slides:
+      - id: deploy_1
+        title: "LLM Deployment Options"
+        narration: |
+          Option 1: External LLM (OpenAI, Claude)
+          Low cost to start
+          Pay per token
+          No infrastructure
+          Limited customization
+        duration: 25
+        content_type: "text"
+        content: |
+          LLM DEPLOYMENT STRATEGIES
+          ════════════════════════
+          
+          OPTION 1: External LLM
+          ├─ Providers: OpenAI, Anthropic, Google
+          ├─ Model: GPT-4, Claude 3, Gemini
+          ├─ Cost: $0.01-0.15 per 1K tokens
+          ├─ Setup: API key only
+          ├─ Scale: Unlimited (pre-paid)
+          ├─ Latency: ~200-500ms
+          ├─ Privacy: Data sent to provider
+          ├─ Customization: Limited
+          └─ Best for: MVP, experimentation, public data
+          
+          OPTION 2: Internal LLM
+          ├─ Models: Llama 2, Mistral, Qwen
+          ├─ Hosting: Your servers/cloud
+          ├─ Cost: Hardware + compute (~$5-50/day)
+          ├─ Setup: Complex infrastructure
+          ├─ Scale: Limited by hardware
+          ├─ Latency: ~100-300ms
+          ├─ Privacy: Full control
+          ├─ Customization: Fine-tuning possible
+          └─ Best for: Production, sensitive data
+          
+          OPTION 3: Hybrid
+          ├─ External for public queries
+          ├─ Internal for sensitive data
+          ├─ Route based on security level
+          └─ Best of both worlds
+      
+      - id: deploy_2
+        title: "Internal LLM (Llama, Mistral)"
+        narration: |
+          Option 2: Run LLM internally
+          Full control
+          No external dependencies
+          Self-hosted infrastructure
+          Higher operational cost
+        duration: 25
+        content_type: "diagram"
+        content: |
+          INTERNAL LLM ARCHITECTURE
+          ════════════════════════
+          
+          User Query
+              ↓
+          ┌─────────────────────────┐
+          │  Intent Classifier      │
+          │  (Local Llama Model)    │
+          │  • Model: 7B or 13B     │
+          │  • Hardware: GPU/TPU    │
+          │  • Latency: 100-300ms   │
+          └────────┬────────────────┘
+                   ↓
+          ┌─────────────────────────┐
+          │  Service Router         │
+          │  (Validated against MCP)│
+          └────────┬────────────────┘
+                   ↓
+          ┌─────────────────────────┐
+          │  MicroServices          │
+          │  (Your business logic)  │
+          └────────┬────────────────┘
+                   ↓
+          ┌─────────────────────────┐
+          │  Response Generator     │
+          │  (Format output)        │
+          └────────┬────────────────┘
+                   ↓
+          Adaptive UI Delivered
+          
+          All data stays private, under your control
+      
+      - id: deploy_3
+        title: "Hybrid Strategy"
+        narration: |
+          Option 3: Use both
+          External for public APIs
+          Internal for sensitive data
+          Route by security level
+          Best of both worlds
+        duration: 25
+        content_type: "code"
+        content: |
+          HYBRID DEPLOYMENT LOGIC
+          ══════════════════════
+          
+          if query_contains_sensitive_data():
+              # Use internal LLM
+              model = llama_internal
+              location = "on-premise"
+              latency = 200ms
+              cost = infrastructure
+          
+          elif requires_latest_models():
+              # Use external LLM
+              model = gpt-4-turbo
+              provider = openai
+              latency = 300ms
+              cost = $0.05 per query
+          
+          elif non_critical_query():
+              # Use cheaper external
+              model = gpt-3.5-turbo
+              provider = openai
+              latency = 150ms
+              cost = $0.002 per query
+          
+          else:
+              # Cache & reuse
+              cache.get_or_fetch(query)
+              latency = 10ms
+              cost = minimal
+          
+          Route intelligently → Maximum efficiency
+      
+      - id: deploy_4
+        title: "Our PoC Choice"
+        narration: |
+          We used external LLMs
+          Focused on architecture
+          Proved the pattern works
+          Can easily switch to internal
+          Pattern is LLM-agnostic
+        duration: 25
+        content_type: "text"
+        content: |
+          OUR PROOF OF CONCEPT
+          ═══════════════════
+          
+          Decision: External LLM (OpenAI)
+          
+          Rationale:
+          ✓ Fast to prototype
+          ✓ Focus on architecture, not ML ops
+          ✓ Unlimited scale for testing
+          ✓ Latest model (GPT-4)
+          ✓ Easy to test variations
+          
+          Code is LLM-agnostic:
+          ├─ MCP layer independent of LLM
+          ├─ Service routing independent
+          ├─ Intent classification pluggable
+          ├─ Swap LLM providers easily
+          └─ Switch to Llama: 10 lines code change
+          
+          Production considerations:
+          ├─ Could deploy Llama internally
+          ├─ Could use Claude API
+          ├─ Could use Google Gemini
+          ├─ Could use open-source models
+          └─ Architecture supports any choice
+          
+          Key insight: 
+          The architecture is more important
+          than which LLM you use

@@ -7,9 +7,35 @@
 
 ---
 
+## 🚀 Quick Navigation
+
+**Choose your path:**
+
+👉 **I want to understand AI-Native Architecture**  
+→ Start with [TL;DR](#tldr) below, then read [ai-native-whitepaper-master.md](ai-native-whitepaper-master.md) (2-4 hours)  
+→ Validate with [POC demonstrations](poc/chapters/) (30 minutes)
+
+👉 **I want to see working code**  
+→ Jump to [POC Quick Start](poc/README.md#-quick-start) (15 minutes setup)  
+→ Run services and explore chapter demos
+
+👉 **I want to present this to my team**  
+→ Use [Demo Recording System](demo-recording-system/) (49 interactive slides)  
+→ Generate, customize, and record videos
+
+👉 **I want to implement this in my org**  
+→ Read [Chapter 12: Migration Path](chapters/chapter-12-migration.md)  
+→ Reference [POC architecture](poc/) for patterns
+
+---
+
 ## 📖 Overview
 
-This whitepaper provides a comprehensive technical guide for architects, engineering leaders, and developers building AI-native applications. It clarifies what truly changes when moving from traditional web to AI-orchestrated architectures, and what remains the same.
+This repository contains three interconnected layers for understanding and implementing AI-native applications:
+
+- **📖 Whitepaper** (15 chapters) - Comprehensive technical guide explaining the AI-native paradigm
+- **💻 POC Code** (~6,000 lines) - Working proof-of-concept validating all major concepts
+- **🎬 Presentation System** (49 slides) - Interactive presentation for communicating these ideas
 
 ### TL;DR
 
@@ -22,6 +48,39 @@ AI-native applications aren't a new architecture—they're the same microservice
 **Organizational impact**: 9 new/evolved engineering roles, centralized AI platform teams (~20 engineers), 4-phase transformation over 18-24 months (varies by organization size, existing ML capabilities, and resource availability).
 
 **Bottom line**: Your microservices architecture stays. Your REST APIs become MCP. Your UI components become dynamic. Your testing becomes probabilistic. Your team structure evolves.
+
+---
+
+## 📁 What's in This Repository
+
+---
+
+### Layer 1: 📖 Whitepaper (15 Chapters)
+**Location**: `chapters/` and `ai-native-whitepaper-master.md`  
+**What**: Comprehensive technical guide covering all aspects of AI-native architecture  
+**Read time**: 2-4 hours  
+**For whom**: Architects, engineering leaders, developers, platform engineers  
+**Start**: [ai-native-whitepaper-master.md](ai-native-whitepaper-master.md)
+
+---
+
+### Layer 2: 💻 POC Implementation (~6,000 lines)
+**Location**: `poc/`  
+**What**: Working proof-of-concept demonstrating whitepaper concepts with tests  
+**Components**: 4 microservices, AI orchestrator, 99 tests (87% pass rate), 6 chapter demos  
+**For whom**: Engineers wanting hands-on understanding  
+**Setup time**: 15 minutes  
+**Start**: [poc/README.md](poc/README.md)
+
+---
+
+### Layer 3: 🎬 Presentation System (49 Slides)
+**Location**: `demo-recording-system/`  
+**What**: Interactive presentation generator for teaching these concepts  
+**Features**: Responsive design, automatic video recording, modular YAML content  
+**For whom**: Anyone presenting AI-native architecture  
+**Setup time**: 10 minutes  
+**Start**: [demo-recording-system/README.md](demo-recording-system/README.md)
 
 ---
 

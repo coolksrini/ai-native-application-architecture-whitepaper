@@ -1,0 +1,88 @@
+sections:
+  - name: "Introduction & Context"
+    slides:
+      - id: intro_1
+        title: "The AI-Native Revolution"
+        narration: |
+          Two game-changing developments are happening RIGHT NOW:
+          MCPs (Model Context Protocol) - New standard for AI integration
+          Advanced LLMs - Understanding intent, routing, rendering
+          When you combine them, everything changes.
+        duration: 25
+        content_type: "diagram"
+        content: |
+          ┌─────────────────────────────────┐
+          │  MCPs (Model Context Protocol)  │
+          │  + Advanced LLMs                │
+          └────────────────┬────────────────┘
+                          │
+                          ↓
+                    AI-NATIVE APPS
+                          │
+          ┌─────────────────────────────────┐
+          │  Intent Classification          │
+          │  Intelligent Routing            │
+          │  Adaptive UI Rendering          │
+          └─────────────────────────────────┘
+      
+      - id: intro_2
+        title: "Why Now? The Problem We Solved"
+        narration: |
+          Before 2024: LLM integration was fragile
+          Each company built custom integration
+          No standard way to describe services to LLMs
+          LLMs hallucinated tool names and parameters
+          Building AI applications was unpredictable
+          That world is ending.
+        duration: 25
+        content_type: "text"
+        content: |
+          ❌ PRE-2024: Chaos
+          ├─ No standard for describing services to LLMs
+          ├─ Every company reinvents the wheel
+          ├─ Hallucination: LLM invents function names
+          ├─ Hallucination: LLM invents parameters
+          ├─ Unpredictable behavior
+          └─ No test coverage for LLM behavior
+          
+          ✅ POST-2024: Order
+          ├─ Model Context Protocol (MCP)
+          ├─ Services describe themselves formally
+          ├─ LLM can't hallucinate what doesn't exist
+          ├─ Standard testing & validation
+          ├─ Production-grade reliability
+          └─ AI-Native Architecture possible
+      
+      - id: intro_3
+        title: "What Changed: MCP Announcement"
+        narration: |
+          Anthropic released Model Context Protocol (MCP)
+          Standard format for services to describe themselves to LLMs
+          Like API documentation, but designed for AI.
+          Open standard. Not vendor-locked.
+          Changes everything about how we build.
+        duration: 25
+        content_type: "code"
+        content: |
+          # MCP: Service Description for LLMs
+          
+          mcp_definition:
+            name: ProductService
+            tools:
+              - name: search_products
+                description: Find products by criteria
+                parameters:
+                  - name: query
+                    type: string
+                  - name: max_price
+                    type: number
+              
+              - name: get_product_details
+                description: Get full product info
+                parameters:
+                  - name: product_id
+                    type: string
+          
+          # LLM reads this
+          # LLM can ONLY call these exact tools
+          # LLM can't hallucinate new functions

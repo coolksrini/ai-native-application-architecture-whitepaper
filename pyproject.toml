@@ -1,0 +1,17 @@
+[project]
+name = "ai-native-whitepaper-demo"
+version = "1.0.0"
+description = "AI-Native Architecture - Demo Recording System"
+readme = "README.md"
+requires-python = ">=3.8"
+authors = [
+    { name = "Srinivas", email = "srinivas@example.com" }
+]
+
+dependencies = [
+    "playwright>=1.40.0",
+    "pyyaml>=6.0",
+]
+
+[tool.uv]
+managed = true

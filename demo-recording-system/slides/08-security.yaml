@@ -1,0 +1,269 @@
+sections:
+  - name: "Security Model"
+    slides:
+      - id: sec_1
+        title: "4-Layer Security Model"
+        narration: |
+          Layer 1: API Gateway
+          Layer 2: Authentication
+          Layer 3: Intent Validation
+          Layer 4: Service Authorization
+          Defense in depth
+        duration: 25
+        content_type: "diagram"
+        content: |
+          4-LAYER SECURITY DEFENSE
+          ════════════════════════
+          
+          User Request
+              ↓
+          ╔════════════════════════════════╗
+          ║  LAYER 1: API Gateway          ║
+          ║  • Rate limiting               ║
+          ║  • DDoS protection             ║
+          ║  • TLS encryption              ║
+          ║  • Request filtering           ║
+          ╚════════════╤═══════════════════╝
+                       ↓
+          ╔════════════════════════════════╗
+          ║  LAYER 2: Authentication       ║
+          ║  • Verify user identity        ║
+          ║  • JWT validation              ║
+          ║  • Session management          ║
+          ║  • Multi-factor auth           ║
+          ╚════════════╤═══════════════════╝
+                       ↓
+          ╔════════════════════════════════╗
+          ║  LAYER 3: Intent Validation    ║
+          ║  • Verify LLM output           ║
+          ║  • Check MCP constraints       ║
+          ║  • Permission checks           ║
+          ║  • Input sanitization          ║
+          ╚════════════╤═══════════════════╝
+                       ↓
+          ╔════════════════════════════════╗
+          ║  LAYER 4: Service Auth         ║
+          ║  • Resource-level ACL          ║
+          ║  • Data filtering              ║
+          ║  • Audit logging               ║
+          ║  • Response validation         ║
+          ╚════════════╤═══════════════════╝
+                       ↓
+          ✓ Request delivered (secured)
+      
+      - id: sec_2
+        title: "Layer 1: API Gateway"
+        narration: |
+          Rate limiting
+          DDoS protection
+          TLS encryption
+          Request filtering
+          First defense
+        duration: 25
+        content_type: "text"
+        content: |
+          API GATEWAY SECURITY
+          ═══════════════════
+          
+          Rate Limiting:
+          ├─ Max 100 requests/minute per IP
+          ├─ Max 1000 requests/day per user
+          ├─ Burst protection (sliding window)
+          ├─ Honeypot detection
+          └─ Gradual degradation under load
+          
+          DDoS Protection:
+          ├─ Cloudflare / AWS Shield
+          ├─ GeoIP filtering
+          ├─ Suspicious pattern detection
+          ├─ Automatic mitigation
+          └─ Real-time alerting
+          
+          Encryption:
+          ├─ TLS 1.3 minimum
+          ├─ Certificate pinning
+          ├─ HSTS headers
+          ├─ Perfect forward secrecy
+          └─ OCSP stapling
+          
+          Request Filtering:
+          ├─ Content-Type validation
+          ├─ Size limits (max 1MB)
+          ├─ Header validation
+          ├─ URL encoding checks
+          └─ SQL injection prevention
+      
+      - id: sec_3
+        title: "Layer 2: Authentication"
+        narration: |
+          User identity verification
+          JWT tokens
+          Session management
+          Multi-factor options
+          Know who user is
+        duration: 25
+        content_type: "code"
+        content: |
+          AUTHENTICATION LAYER
+          ════════════════════
+          
+          JWT Token Structure:
+          {
+            "header": {
+              "alg": "HS256",
+              "typ": "JWT"
+            },
+            "payload": {
+              "user_id": "123",
+              "username": "john@example.com",
+              "roles": ["user", "premium"],
+              "iat": 1697000000,
+              "exp": 1697003600,
+              "aud": "api.example.com"
+            },
+            "signature": "..."
+          }
+          
+          Multi-factor Authentication:
+          ├─ Step 1: Username/password
+          ├─ Step 2: TOTP app
+          ├─ Step 3: Device fingerprint
+          ├─ OR: Passwordless (WebAuthn)
+          └─ Result: High-entropy identity
+          
+          Session Management:
+          ├─ Token expires: 1 hour
+          ├─ Refresh token: 30 days
+          ├─ Device tracking
+          ├─ Suspicious login alerts
+          └─ Automatic logout on risk
+      
+      - id: sec_4
+        title: "Layer 3: Intent Validation"
+        narration: |
+          Validate classified intent
+          Check against user permissions
+          Prevent intent injection
+          Ensure LLM output safe
+          Trust but verify
+        duration: 25
+        content_type: "diagram"
+        content: |
+          INTENT VALIDATION
+          ═════════════════
+          
+          LLM Output:
+          {
+            intent: "SEARCH_PRODUCTS",
+            parameters: {
+              category: "gaming",
+              price_max: 2000
+            }
+          }
+              ↓
+          Validation Checks:
+          ├─ Intent in allowed list? ✓
+          ├─ User permission for intent? ✓
+          ├─ Parameters valid type? ✓
+          ├─ Parameters in allowed range? ✓
+          ├─ No injection attempts? ✓
+          ├─ MCP constraint satisfied? ✓
+          └─ Anomaly detection passed? ✓
+              ↓
+          ✓ Intent approved
+          ✓ Proceed to service layer
+              ↓
+          ✗ Invalid intent
+          ✗ Log security event
+          ✗ Return error
+          ✗ Alert security team if suspicious
+      
+      - id: sec_5
+        title: "Layer 4: Service Authorization"
+        narration: |
+          Service-level permissions
+          Resource-level access control
+          Data filtering
+          Audit logging
+          Final check
+        duration: 25
+        content_type: "text"
+        content: |
+          SERVICE AUTHORIZATION
+          ═════════════════════
+          
+          Resource-Level ACL:
+          ├─ User can read own orders? ✓
+          ├─ User can delete own wishlist? ✓
+          ├─ User can modify admin settings? ✗ (unauthorized)
+          ├─ User can view other user's cart? ✗ (forbidden)
+          └─ User can access product inventory? (depends on role)
+          
+          Data Filtering:
+          ├─ ProductService: Show only published
+          ├─ OrderService: Show only own orders
+          ├─ UserService: Hide sensitive fields
+          ├─ PaymentService: Mask card numbers
+          └─ Each response filtered by policy
+          
+          Audit Logging:
+          ├─ Log: timestamp, user_id, action, result
+          ├─ Store: Immutable audit trail
+          ├─ Retention: 7 years (compliance)
+          ├─ Access: Only security team
+          └─ Alert: Suspicious patterns
+          
+          Compliance:
+          ├─ GDPR: User data deletion
+          ├─ CCPA: Access request handling
+          ├─ PCI-DSS: Payment data
+          ├─ HIPAA: Health data
+          └─ SOC2: Audit requirements
+      
+      - id: sec_6
+        title: "Hallucination Prevention"
+        narration: |
+          LLM can only call defined tools
+          MCP constraints
+          Parameter validation
+          Response verification
+          No surprises
+        duration: 25
+        content_type: "code"
+        content: |
+          HALLUCINATION PREVENTION
+          ════════════════════════
+          
+          MCP Definition (what LLM sees):
+          tools:
+            - name: search_products
+              parameters:
+                - name: category
+                  type: enum
+                  values: [gaming, office, budget]
+                - name: price_max
+                  type: number
+                  min: 0
+                  max: 10000
+          
+          Attack Attempt 1: Wrong function
+          LLM tries: call_function("search_all_users")
+          Result: ✗ Function not in MCP
+          Action: Validation fails, retry request
+          
+          Attack Attempt 2: Wrong parameter type
+          LLM tries: search_products(price_max: "expensive")
+          Result: ✗ String not allowed (type: number)
+          Action: Type validation fails, error returned
+          
+          Attack Attempt 3: Invalid enum value
+          LLM tries: search_products(category: "kitchen")
+          Result: ✗ "kitchen" not in [gaming, office]
+          Action: Enum validation fails, error returned
+          
+          Attack Attempt 4: Out of range
+          LLM tries: search_products(price_max: 999999)
+          Result: ✗ 999999 > max (10000)
+          Action: Range validation fails
+          
+          Result: LLM cannot bypass, even if it tries

@@ -1,0 +1,46 @@
+# Ignore recordings (video files)
+recordings/
+*.webm
+
+# Ignore temporary files
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+*.tmp
+
+# Keep generated HTML slides (static content, safe to commit)
+# demo_slides.html is intentionally NOT ignored
+*.mp4
+
+# Recording output
+recordings/
+*.video
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*.log

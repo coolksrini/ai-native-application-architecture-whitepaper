@@ -1,0 +1,176 @@
+sections:
+  - name: "Multiple Intents"
+    slides:
+      - id: intent_1
+        title: "Same Data, Different Intents"
+        narration: |
+          User 1: Show me products in ascending price
+          Same product data
+          Different intent: PRICE_SORT_ASC
+          Different UI: SortedListComponent
+          Different rendering
+        duration: 25
+        content_type: "code"
+        content: |
+          SAME DATA, DIFFERENT INTENT
+          ═══════════════════════════
+          
+          Product DB:
+          [Laptop1($1500), Laptop2($1800), 
+           Laptop3($1200), Laptop4($2000)]
+          
+          User 1 Query: "Show cheapest first"
+          → Intent: PRICE_SORT_ASC
+          → Component: SortedListComponent
+          → Output:
+             1. Laptop3 - $1200
+             2. Laptop1 - $1500
+             3. Laptop2 - $1800
+             4. Laptop4 - $2000
+          
+          User 2 Query: "Show most expensive"
+          → Intent: PRICE_SORT_DESC
+          → Component: ReverseSortedListComponent
+          → Output:
+             1. Laptop4 - $2000
+             2. Laptop2 - $1800
+             3. Laptop1 - $1500
+             4. Laptop3 - $1200
+          
+          Same data, different UI, different component
+      
+      - id: intent_2
+        title: "Intent: Price Sort Descending"
+        narration: |
+          User 2: Show me products from most to least expensive
+          Same products
+          Different intent: PRICE_SORT_DESC
+          Different component: ReverseSortedListComponent
+          LLM classified correctly
+        duration: 25
+        content_type: "diagram"
+        content: |
+          Intent Classification Tree
+          ═══════════════════════════
+          
+          User Query: "Show expensive ones first"
+                │
+                ├─ Does it mention PRICE? YES ✓
+                │
+                ├─ Is it SORT? YES ✓
+                │
+                ├─ Is it ASC or DESC? 
+                │   "expensive first" = DESC ✓
+                │
+                └─ → Intent: PRICE_SORT_DESC
+                     Component: PriceDescendingList
+                     Icon: 📉
+                     Animation: slide-in
+                     Interaction: click-to-reverse
+      
+      - id: intent_3
+        title: "Intent: Comparison View"
+        narration: |
+          User 3: Compare these three laptops
+          Same data from ProductService
+          Intent: PRODUCT_COMPARISON
+          UI: ComparisonTableComponent
+          Adaptive rendering
+        duration: 25
+        content_type: "text"
+        content: |
+          COMPARISON INTENT
+          ═════════════════
+          
+          User: "Compare specs for Laptop1 vs Laptop2 vs Laptop3"
+          
+          Detected Intent: PRODUCT_COMPARISON
+          
+          Service Call: ProductService.get_comparison(
+            product_ids: [1, 2, 3],
+            aspects: [price, cpu, gpu, ram, storage]
+          )
+          
+          Result Format:
+          ┌─────────┬────────┬────────┬────────┐
+          │ Specs   │ Opt 1  │ Opt 2  │ Opt 3  │
+          ├─────────┼────────┼────────┼────────┤
+          │ Price   │ $1500  │ $1800  │ $1200  │
+          │ CPU     │ i7-13  │ i9-13  │ i5-12  │
+          │ GPU     │ RTX40  │ RTX40  │ RTX30  │
+          │ RAM     │ 32GB   │ 32GB   │ 16GB   │
+          │ Storage │ 1TB    │ 2TB    │ 512GB  │
+          └─────────┴────────┴────────┴────────┘
+      
+      - id: intent_4
+        title: "Intent: Stock Status"
+        narration: |
+          User 4: Which ones are in stock?
+          Same inventory data
+          Intent: INVENTORY_CHECK
+          UI: AvailabilityIndicatorComponent
+          Context-aware response
+        duration: 25
+        content_type: "diagram"
+        content: |
+          INVENTORY CHECK INTENT
+          ═════════════════════
+          
+          User Query: "Which are in stock right now?"
+                    ↓
+          Intent Classification
+                    ↓
+          INVENTORY_CHECK (high confidence)
+                    ↓
+          Service: InventoryService.get_status(
+            product_ids: [all returned products]
+          )
+                    ↓
+          Response: 
+          ✓ Laptop1 - In Stock (5 available)
+          ✗ Laptop2 - Out of Stock (backorder)
+          ✓ Laptop3 - In Stock (2 available, low)
+          ⏳ Laptop4 - Restocking (2 days)
+                    ↓
+          UI: AvailabilityBadges + CountBadges
+      
+      - id: intent_5
+        title: "Intent: Recommendations"
+        narration: |
+          User 5: What would you recommend?
+          Same products
+          Intent: RECOMMENDATION_REQUEST
+          UI: RecommendationCardComponent
+          LLM picks best fit
+        duration: 25
+        content_type: "code"
+        content: |
+          RECOMMENDATION INTENT
+          ═════════════════════
+          
+          User: "Which one should I get?"
+          
+          Intent: RECOMMENDATION_REQUEST
+          
+          LLM Analysis:
+          1. Extract user context
+             • Budget: user mentioned $2000 max
+             • Use case: gaming (mentioned games)
+             • Preferences: portable (mentioned travel)
+          
+          2. Score products
+             • Laptop1: 8.5/10 (good price, portable)
+             • Laptop2: 9.0/10 (best GPU, better battery)
+             • Laptop3: 7.0/10 (cheapest, but weaker)
+             • Laptop4: 9.5/10 (excellent all-around)
+          
+          3. Generate explanation
+             "Laptop4 is your best choice because:
+              • Highest performance (RTX 4090)
+              • Best battery life (10 hrs)
+              • Good portability (4.5 lbs)
+              • Within budget ($1995)
+              • 2 in stock now"
+          
+          UI: PrimaryRecommendationCard + 
+              AlternativeSuggestions

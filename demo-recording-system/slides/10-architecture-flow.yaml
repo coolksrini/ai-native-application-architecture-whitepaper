@@ -1,0 +1,395 @@
+sections:
+  - name: "Architecture Flow"
+    slides:
+      - id: arch_1
+        title: "Architecture Step 1: Query In"
+        narration: |
+          User speaks naturally
+          Query arrives at system
+          Context retrieved
+          Ready for processing
+          Start of journey
+        duration: 25
+        content_type: "code"
+        content: |
+          STEP 1: USER QUERY RECEIVED
+          ═══════════════════════════
+          
+          Input Channel:
+          • Web: POST /api/chat
+          • Mobile: WebSocket connection
+          • Voice: Speech-to-text first
+          
+          Request Payload:
+          {
+            "user_id": "user_123",
+            "session_id": "sess_456",
+            "message": "Show me gaming laptops under $2000",
+            "timestamp": "2024-01-15T10:30:45Z",
+            "metadata": {
+              "device": "web",
+              "browser": "Chrome",
+              "location": "US-CA"
+            }
+          }
+          
+          Processing:
+          ├─ Validate request format ✓
+          ├─ Check rate limits ✓
+          ├─ Authenticate user ✓
+          ├─ Load user context ✓
+          ├─ Load conversation history ✓
+          └─ Queue for LLM processing
+          
+          Status: Ready for next layer
+      
+      - id: arch_2
+        title: "Architecture Step 2: LLM Reads MCP"
+        narration: |
+          LLM loads service definitions
+          MCP file contains tools
+          LLM understands capabilities
+          LLM knows what's possible
+          Knowledge ready
+        duration: 25
+        content_type: "diagram"
+        content: |
+          STEP 2: MCP CONTEXT LOADING
+          ═══════════════════════════
+          
+          LLM Process:
+          ┌──────────────────────────────┐
+          │ Load MCP Definitions         │
+          │ (service capabilities)       │
+          └──────────┬───────────────────┘
+                     ↓
+          ┌──────────────────────────────┐
+          │ Parse Available Tools        │
+          │ • ProductService.search()    │
+          │ • OrderService.get_cart()    │
+          │ • UserService.get_profile()  │
+          │ • PaymentService.validate()  │
+          └──────────┬───────────────────┘
+                     ↓
+          ┌──────────────────────────────┐
+          │ Load Tool Constraints        │
+          │ • Valid parameters           │
+          │ • Parameter ranges           │
+          │ • Required fields            │
+          │ • Enum values                │
+          └──────────┬───────────────────┘
+                     ↓
+          ┌──────────────────────────────┐
+          │ Load User Permissions        │
+          │ • What user can access       │
+          │ • What user can modify       │
+          │ • Data privacy rules         │
+          └──────────┬───────────────────┘
+                     ↓
+          LLM Ready: Full capability map
+      
+      - id: arch_3
+        title: "Architecture Step 3: Intent Classification"
+        narration: |
+          LLM analyzes query
+          Compares to available tools
+          Classifies intent
+          Extracts parameters
+          Decision made
+        duration: 25
+        content_type: "code"
+        content: |
+          STEP 3: INTENT CLASSIFICATION
+          ═════════════════════════════
+          
+          LLM Analysis:
+          Query: "Show me gaming laptops under $2000"
+          
+          Reasoning:
+          ├─ User wants to SEE products
+          │  → Intent: SEARCH or DISPLAY
+          ├─ Specific category: gaming, laptops
+          │  → Parameters: category, type
+          ├─ Price constraint: under $2000
+          │  → Parameter: price_max = 2000
+          ├─ No other action (not buying yet)
+          │  → Single intent, not compound
+          └─ Check available tools...
+             → ProductService.search() matches!
+          
+          Classification Result:
+          {
+            intent: "SEARCH_PRODUCTS",
+            confidence: 0.99,
+            primary_service: "ProductService",
+            method: "search",
+            parameters: {
+              category: "gaming",
+              product_type: "laptops",
+              price_max: 2000
+            },
+            enrichment_sources: [
+              "user_preferences",
+              "purchase_history"
+            ]
+          }
+          
+          Validation:
+          ✓ Intent exists in MCP
+          ✓ User permitted to perform
+          ✓ All parameters defined
+          ✓ No hallucinated fields
+      
+      - id: arch_4
+        title: "Architecture Step 4: Service Routing"
+        narration: |
+          Intent Orchestrator receives classification
+          Routes to appropriate service
+          ProductService
+          OrderService
+          UserService
+          Execution begins
+        duration: 25
+        content_type: "diagram"
+        content: |
+          STEP 4: SERVICE ROUTING
+          ══════════════════════
+          
+          Intent Classification
+          {intent: SEARCH_PRODUCTS, ...}
+                       ↓
+          Intent Orchestrator
+          ├─ Extract service: ProductService
+          ├─ Extract method: search
+          ├─ Validate parameters ✓
+          ├─ Apply user filters
+          └─ Route to service
+                       ↓
+          ┌─────────────────────────────┐
+          │  ProductService Handler     │
+          │  ├─ search_products()       │
+          │  ├─ Apply filters           │
+          │  ├─ Query database          │
+          │  ├─ Sort results            │
+          │  └─ Prepare response        │
+          └────────────┬────────────────┘
+                       ↓
+          Result Ready: 12 matching laptops
+      
+      - id: arch_5
+        title: "Architecture Step 5: Parallel Execution"
+        narration: |
+          Multiple services can run
+          ProductService queries
+          UserService queries
+          OrderService queries
+          All in parallel
+        duration: 25
+        content_type: "code"
+        content: |
+          STEP 5: PARALLEL EXECUTION
+          ══════════════════════════
+          
+          Complex Intent Example:
+          "Show me gaming laptops under $2000
+           with my wishlist comparison"
+          
+          Decomposed Intents:
+          ├─ SEARCH_PRODUCTS
+          │  └─ Service: ProductService
+          │     └─ Time: 200ms
+          │
+          ├─ GET_WISHLIST
+          │  └─ Service: UserService
+          │     └─ Time: 150ms
+          │
+          └─ COMPARE_ITEMS
+             └─ Service: ComparisonService
+                └─ Time: 100ms
+          
+          Sequential (BAD):
+          200ms + 150ms + 100ms = 450ms ✗
+          
+          Parallel (GOOD):
+          max(200ms, 150ms, 100ms) = 200ms ✓
+          
+          Implementation:
+          async def process_intent(intent):
+              results = await asyncio.gather(
+                  product_search(),
+                  get_wishlist(),
+                  compare_items(),
+                  timeout=5
+              )
+              return results
+          
+          Benefit: 2.25x faster ✓
+      
+      - id: arch_6
+        title: "Architecture Step 6: Result Aggregation"
+        narration: |
+          Services return results
+          Aggregator combines
+          Data is merged
+          Context enriched
+          Ready for rendering
+        duration: 25
+        content_type: "diagram"
+        content: |
+          STEP 6: RESULT AGGREGATION
+          ═══════════════════════════
+          
+          Service Results Come Back:
+          
+          ProductService Result:
+          [Laptop1, Laptop2, Laptop3, ...]
+                       ↓
+          UserService Result:
+          {wishlist: [Laptop2, Laptop5, ...]}
+                       ↓
+          ComparisonService Result:
+          {matrix: specs_comparison}
+                       ↓
+          ┌────────────────────────────┐
+          │ Aggregation Logic          │
+          ├─ Merge product list        │
+          ├─ Add wishlist indicators   │
+          ├─ Add comparison metadata   │
+          ├─ Enrich with ratings       │
+          ├─ Add availability status   │
+          ├─ Add pricing history       │
+          └─ Sort/filter as needed     │
+                       ↓
+          Unified Result:
+          [
+            {
+              id: 1,
+              name: "Laptop1",
+              price: $1500,
+              specs: {...},
+              in_wishlist: false,
+              in_comparison: true,
+              availability: "In Stock",
+              rating: 4.5
+            },
+            ...
+          ]
+      
+      - id: arch_7
+        title: "Architecture Step 7: LLM UI Selection"
+        narration: |
+          LLM selects component
+          Based on intent
+          Based on results
+          ListComponent
+          ComparisonComponent
+          CartComponent
+        duration: 25
+        content_type: "code"
+        content: |
+          STEP 7: ADAPTIVE UI SELECTION
+          ════════════════════════════
+          
+          LLM Decision Tree:
+          
+          if intent == SEARCH_PRODUCTS:
+              if result_count > 50:
+                  → GridComponent (visual)
+              elif result_count > 5:
+                  → ListComponent (compact)
+              else:
+                  → DetailedListComponent (expanded)
+          
+          elif intent == PRODUCT_COMPARISON:
+              if result_count == 2:
+                  → SideBySideComponent
+              elif result_count > 2:
+                  → ComparisonTableComponent
+          
+          elif intent == SHOW_CART:
+              if cart_empty:
+                  → EmptyCartComponent
+              elif cart_single_item:
+                  → CardComponent
+              else:
+                  → CartDetailComponent
+          
+          elif intent == RECOMMENDATION:
+              → FeatureHighlightComponent
+                (emphasizes best choice)
+          
+          Result:
+          {
+            component: "ListComponent",
+            props: {
+              items: [...],
+              sort_by: "popularity",
+              filters_visible: true,
+              show_comparison: true
+            }
+          }
+      
+      - id: arch_8
+        title: "Architecture Step 8: Response Delivery"
+        narration: |
+          UI component sent to client
+          Data provided
+          Component renders
+          User sees result
+          End of journey
+        duration: 25
+        content_type: "code"
+        content: |
+          STEP 8: RESPONSE DELIVERY
+          ════════════════════════
+          
+          Response Payload:
+          {
+            status: "success",
+            intent: "SEARCH_PRODUCTS",
+            component: "ListComponent",
+            data: {
+              items: [...],
+              total_count: 12,
+              page: 1,
+              per_page: 20
+            },
+            ui_config: {
+              layout: "list",
+              sorting: ["price", "popularity"],
+              filtering: ["price", "brand"],
+              pagination: true
+            },
+            metadata: {
+              query_time: "200ms",
+              execution_time: "150ms",
+              cache_hit: false,
+              response_size: "45KB"
+            },
+            next_actions: [
+              {
+                label: "Compare",
+                intent: "COMPARE"
+              },
+              {
+                label: "Add to Cart",
+                intent: "ADD_TO_CART"
+              }
+            ]
+          }
+          
+          Client Processing:
+          1. Deserialize JSON
+          2. Load ListComponent
+          3. Bind data to component
+          4. Render to DOM
+          5. Show to user
+          
+          User sees:
+          ✓ 12 gaming laptops
+          ✓ Sorted by relevance
+          ✓ With prices and specs
+          ✓ With action buttons
+          ✓ Ready to interact
+          
+          Total latency: 400-600ms (acceptable)

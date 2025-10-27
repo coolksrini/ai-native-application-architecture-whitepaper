@@ -1,0 +1,205 @@
+sections:
+  - name: "Multi-Turn Conversations"
+    slides:
+      - id: multi_1
+        title: "Step 1: Initial Context"
+        narration: |
+          User provides initial context
+          System loads user preferences
+          System loads purchase history
+          System loads saved searches
+          System ready for queries
+        duration: 25
+        content_type: "diagram"
+        content: |
+          CONVERSATION CONTEXT LOADING
+          ════════════════════════════
+          
+          User connects
+              ↓
+          ┌────────────────────────────┐
+          │ Load User Profile          │
+          │ • Preferences              │
+          │ • Budget ranges            │
+          │ • Favorite categories      │
+          └────────┬───────────────────┘
+                   ↓
+          ┌────────────────────────────┐
+          │ Load Purchase History      │
+          │ • Previous products        │
+          │ • Purchase patterns        │
+          │ • Price sensitivity        │
+          └────────┬───────────────────┘
+                   ↓
+          ┌────────────────────────────┐
+          │ Load Saved Searches        │
+          │ • Wishlist                 │
+          │ • Search filters           │
+          │ • Comparison lists         │
+          └────────┬───────────────────┘
+                   ↓
+          ┌────────────────────────────┐
+          │ Initialize Conversation   │
+          │ Context Ready             │
+          │ Memory: Full              │
+          └────────────────────────────┘
+      
+      - id: multi_2
+        title: "Step 2: First Query"
+        narration: |
+          User: Show me gaming laptops
+          LLM classifies: SEARCH_PRODUCTS
+          Context available for LLM
+          ProductService called
+          Results returned
+        duration: 25
+        content_type: "code"
+        content: |
+          FIRST QUERY WITH CONTEXT
+          ════════════════════════
+          
+          User Query:
+          "Show me gaming laptops"
+          
+          LLM Context Available:
+          {
+            user_id: "user_123",
+            budget: "$2000",
+            categories: ["gaming", "development"],
+            history: [previous_purchases],
+            preferences: {
+              brand: ["Dell", "ASUS"],
+              cpu_min: "i7",
+              gpu_min: "RTX4060"
+            }
+          }
+          
+          LLM Decision:
+          ✓ Intent: SEARCH_PRODUCTS
+          ✓ Parameters auto-enriched:
+            - category: gaming (from query)
+            - budget: $2000 (from user profile)
+            - brands: ["Dell", "ASUS"] (from history)
+            - cpu_min: i7 (from preferences)
+            - gpu_min: RTX4060 (from preferences)
+          
+          Service Call:
+          ProductService.search(enriched_params)
+          
+          Result: 12 gaming laptops matching all criteria
+      
+      - id: multi_3
+        title: "Step 3: Follow-up Query"
+        narration: |
+          User: Under $2000
+          LLM remembers previous context
+          Refines search automatically
+          Filters results
+          New UI render
+        duration: 25
+        content_type: "text"
+        content: |
+          CONTEXT PRESERVATION (Multi-turn)
+          ═════════════════════════════════
+          
+          Turn 1:
+          User: "Show gaming laptops"
+          Result: 23 gaming laptops
+          Context stored: {intent: SEARCH, category: gaming}
+          
+          Turn 2:
+          User: "Under $2000"
+          
+          LLM Context:
+          ✓ Remembers Turn 1 context
+          ✓ "Under $2000" = max_price: 2000
+          ✓ Refines search within previous results
+          ✓ Applies filter to stored results
+          
+          Optimization:
+          ├─ NO need to fetch all products again
+          ├─ Filter on cached results
+          ├─ Only 3 products match new criteria
+          ├─ Fast response (50ms instead of 500ms)
+          └─ Network efficient
+          
+          Result: 3 gaming laptops under $2000
+      
+      - id: multi_4
+        title: "Step 4: Cart Action"
+        narration: |
+          User: Add to cart
+          Context includes product ID
+          Intent: ADD_TO_CART
+          OrderService called
+          Cart updated
+        duration: 25
+        content_type: "diagram"
+        content: |
+          CONTEXT-AWARE ACTION
+          ═══════════════════
+          
+          User: "Add this to my cart"
+                      ↓
+          LLM Context:
+          ├─ Last viewed product: Laptop #42
+          ├─ Current search results: [list]
+          ├─ User cart: [existing items]
+          ├─ User ID: user_123
+          └─ Session ID: sess_789
+                      ↓
+          Intent: ADD_TO_CART
+          Product ID: 42 (from context)
+          Quantity: 1 (inferred)
+          User ID: user_123 (from session)
+                      ↓
+          OrderService.add_to_cart(
+            user_id: user_123,
+            product_id: 42,
+            quantity: 1
+          )
+                      ↓
+          ✓ Item added
+          ✓ Cart count: 1 → 2
+          ✓ Total: $1500 + $2000 = $3500
+      
+      - id: multi_5
+        title: "Step 5: Stateful Continuation"
+        narration: |
+          User: Show my cart
+          System remembers conversation
+          User context preserved
+          Cart contents displayed
+          Everything connected
+        duration: 25
+        content_type: "code"
+        content: |
+          STATEFUL SESSION CONTINUATION
+          ════════════════════════════
+          
+          Turn 5:
+          User: "Show my cart"
+          
+          LLM has full context:
+          {
+            session_id: "sess_789",
+            user_id: "user_123",
+            conversation_history: [
+              {turn: 1, query: "gaming laptops"},
+              {turn: 2, query: "under $2000"},
+              {turn: 3, query: "compare these"},
+              {turn: 4, action: "add_to_cart"}
+            ],
+            current_cart: [item_1, item_2],
+            last_viewed_product: 42,
+            search_filters: {category: gaming, 
+                            max_price: 2000}
+          }
+          
+          LLM Action:
+          ✓ Intent: SHOW_CART
+          ✓ Call: OrderService.get_cart(user_123)
+          ✓ Format: CartDetailComponent
+          ✓ Include: Related products
+          
+          Result: Complete cart view with context
