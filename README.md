@@ -2,283 +2,128 @@
 
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![Version](https://img.shields.io/badge/version-1.0-blue.svg)](https://github.com/coolksrini/ai-native-application-architecture-whitepaper)
-[![Tests](https://img.shields.io/badge/tests-99%20passing-brightgreen.svg)](#poc-implementation)
+[![Tests](https://img.shields.io/badge/tests-99%20passing-brightgreen.svg)](#-working-code)
 
-**A complete technical guide with working code for building AI-native applications.**
-
-> Your microservices stay. Your REST APIs become MCP. Your UI components become dynamic. Your testing becomes probabilistic. Your team structure evolves.
+**A technical guide for building applications where AI orchestrates your microservices instead of humans.**
 
 ---
 
-## � What Is This?
+## The Core Idea
 
-This repository is a **complete resource for understanding and building AI-native applications**:
+### The Paradigm Shift: From Clicks to Intent
 
-1. **📚 Comprehensive Whitepaper** (15 chapters, 20K+ lines) - Technical deep-dive covering architecture, security, testing, organizational impact, and implementation strategies
-2. **💻 Working POC** (6K+ lines, 99 tests passing) - Validated proof-of-concept demonstrating all major concepts with 4 microservices, AI orchestrator, and chapter demos
-3. **🎬 Presentation System** (49 slides) - Interactive slides for teaching these concepts to your team
+Users have fundamentally changed **how they expect to interact with systems**. ChatGPT, Claude, and AI assistants have trained users to prefer **intent-based interaction** ("chat with me to get results") over **click-based interaction** ("navigate menus and forms").
 
-**Perfect for**: Architects designing AI-native systems, engineering leaders planning organizational transformation, developers implementing the patterns, platform teams building infrastructure.
+This isn't a preference — it's becoming the new baseline. Users increasingly feel that **clicking is less natural than chatting**. They expect systems to understand their intent, not force them through predetermined UI flows.
 
----
+**The problem**: Traditional applications are hardcoded for click-based flows. A user clicks button → frontend decides what API to call → backend decides what service to invoke. Everything is predetermined by developers at build time.
 
-## 🎯 Quick Start By Role
+**The consequence**: These apps feel obsolete to users who've experienced ChatGPT. They feel inflexible, limited, and wrong.
 
-### 👨‍💼 Engineering Leader / Architect
-Start here → [Chapter 1: Paradigm Shift](chapters/chapter-1-paradigm-shift.md)
-- 15-minute overview of what's changing
-- Then jump to [Chapter 12: Migration Path](chapters/chapter-12-migration.md)
-- See [POC README](poc/README.md) for code validation
+### AI-Native: Letting LLMs Understand Your Services
 
-### 👨‍💻 Developer / Engineer
-Start here → [POC README](poc/README.md#-quick-start)
-- 15 minutes to get services and tests running
-- Then explore [Chapter 5: MCP Microservices](chapters/chapter-5-mcp-microservices.md)
-- Run demos: `python poc/demo/chapter_5_mcp_microservices.py`
+To stay relevant, applications must adapt to this new interaction model. Instead of hardcoding service orchestration, you let LLMs:
 
-### 🏛️ Platform / ML Engineer
-Start here → [Chapter 11: Training & Fine-Tuning](chapters/chapter-11-training.md)
-- Then [Chapter 10: Testing & Quality](chapters/chapter-10-testing.md)
-- Then [Chapter 8: Context Management](chapters/chapter-8-context.md)
-- See `poc/agent/context_manager.py` for implementation
+1. **Understand what services exist** (via MCP - Model Context Protocol)
+2. **Interpret user intent** (what does the user actually want?)
+3. **Decide what to call** (which service solves this intent?)
+4. **Execute dynamically** (generate the UI/flow at runtime, not build time)
 
-### 🎓 Student / Learning
-Start here → [Complete Whitepaper](ai-native-whitepaper-master.md) (2-4 hours)
-- Or [TL;DR Summary](#tldr-executive-summary) below (5 minutes)
-- - Then run POC demos and explore code
+**This requires a different architecture** — not because MCP is better than REST, but because **user expectations have fundamentally changed**.
 
----
+### What Actually Changes
 
-## 🔗 Quick Links
+| Aspect | Before | After | Why |
+|--------|--------|-------|-----|
+| Service orchestration | Developers hardcode flow | LLM decides based on intent | More flexible, handles edge cases |
+| UI rendering | Frontend dev builds components | LLM picks components at runtime | Better UX for each user's actual need |
+| Testing | Deterministic tests | Probabilistic evaluation (95%+ accuracy) | Can't predict all LLM decisions |
+| Authorization | User can do X | User+Agent+Intent all authorized | LLM needs permission to act |
+| Training | Optional nicety | Required core practice | Generic models hit 70-80% accuracy; need fine-tuning for 95%+ |
+| **Costs** | **Infrastructure + Dev** | **Infrastructure + Dev + LLM inference** | Every user interaction costs LLM tokens (but saves dev time) |
 
----
+### Real Impact
 
-## � Repository Structure
-
-```
-.
-├── README.md                          ← You are here
-├── ai-native-whitepaper-master.md     # Master document & navigation
-│
-├── chapters/                          # 15 comprehensive chapters
-│   ├── chapter-1-paradigm-shift.md
-│   ├── chapter-2-what-changes.md
-│   ├── chapter-3-what-remains.md
-│   ├── chapter-4-whats-new.md
-│   ├── chapter-5-mcp-microservices.md
-│   ├── chapter-6-ui-layer.md
-│   ├── chapter-7-security.md
-│   ├── chapter-8-context.md
-│   ├── chapter-9-analytics.md
-│   ├── chapter-10-testing.md
-│   ├── chapter-11-training.md
-│   ├── chapter-12-migration.md
-│   ├── chapter-13-frameworks.md
-│   ├── chapter-14-case-studies.md
-│   └── chapter-15-conclusion.md
-│
-├── poc/                               # Proof-of-Concept Implementation
-│   ├── README.md                      # POC documentation
-│   ├── pyproject.toml
-│   ├── core/                          # Core framework
-│   ├── services/                      # 4 microservices
-│   ├── agent/                         # AI orchestrator
-│   ├── tests/                         # 99 passing tests
-│   ├── demo/                          # 6 chapter demonstrations
-│   │   ├── chapter_5_mcp_microservices.py
-│   │   ├── chapter_6_dynamic_ui.py
-│   │   ├── chapter_7_security.py
-│   │   ├── chapter_8_context.py
-│   │   ├── chapter_10_testing.py
-│   │   └── chapter_11_training.py
-│   └── docs/                          # Additional POC docs
-│
-├── demo-slides.html                   # 49-slide interactive presentation
-├── presentations/                     # Presentation system
-│   ├── README.md                      # Build & record slides
-│   ├── slide-config-loader.py         # Generate HTML from YAML
-│   ├── demo-recorder.py               # Record videos
-│   └── slides/                        # Modular YAML content
-│
-└── docs/                              # Repository documentation
-    ├── CONTRIBUTING.md
-    └── LICENSE
-```
+- **Same microservices**: Nothing changes in your backend services
+- **New protocol**: REST becomes MCP (JSON-RPC instead of HTTP)
+- **New evaluation methods**: You measure probabilistic accuracy, not deterministic bugs
+- **New team roles**: Prompt engineers, evaluation engineers, AI platform teams
+- **Organizational evolution**: Teams must upskill as AI tools reduce development time and integrate everywhere — it's not optional, it's inevitable for staying relevant
+- **18-24 month journey**: 4 phases to transform an organization
 
 ---
 
-## � Quick Links
+## What's Included
 
-**📚 Documentation**
-- [Master Document](ai-native-whitepaper-master.md) - Complete overview
-- [All 15 Chapters](chapters/) - Individual chapters
+### 📚 Whitepaper (15 Chapters)
 
-**💻 Code & Demos**
-- [POC README](poc/README.md) - How to run it
-- [POC Source](poc/) - The implementation
-- [Chapter Demos](poc/demos/) - Executable examples
+**Part I: Foundation** - What changes, what doesn't, what's new
 
-**🎬 Presentation**
-- 🎬 [Live Presentation](https://coolksrini.github.io/ai-native-application-architecture-whitepaper/demo-slides.html) - Interactive 49-slide presentation (hosted live)
-- 📁 [Local Version](demo-slides.html) - Download and open locally
-- 🛠️ [Presentation System](presentations/) - Build & record your own
-- 📖 [Case Studies](chapters/chapter-14-case-studies.md) - Real examples
+- [Chapter 1: The Paradigm Shift](chapters/chapter-1-paradigm-shift.md)
+- [Chapters 2-4: What remains the same, what's entirely new](chapters/)
 
-**🤝 Community**
-- [Issues](https://github.com/coolksrini/ai-native-application-architecture-whitepaper/issues) - Bug reports & feature requests
-- [Discussions](https://github.com/coolksrini/ai-native-application-architecture-whitepaper/discussions) - Questions & ideas
-- [Contributing](CONTRIBUTING.md) - How to help
+**Part II: Architecture** - How to actually build this
 
----
+- [Chapters 5-8: MCP microservices, dynamic UI, security, context management](chapters/)
 
-## � Repository Structure
+**Part III: Operations** - Running this in production
 
-```
-.
-├── README.md                          ← You are here
-├── ai-native-whitepaper-master.md     # Master document & navigation
-│
-├── chapters/                          # 15 comprehensive chapters
-│   ├── chapter-1-paradigm-shift.md
-│   ├── chapter-2-what-changes.md
-│   ├── chapter-3-what-remains.md
-│   ├── chapter-4-whats-new.md
-│   ├── chapter-5-mcp-microservices.md
-│   ├── chapter-6-ui-layer.md
-│   ├── chapter-7-security.md
-│   ├── chapter-8-context.md
-│   ├── chapter-9-analytics.md
-│   ├── chapter-10-testing.md
-│   ├── chapter-11-training.md
-│   ├── chapter-12-migration.md
-│   ├── chapter-13-frameworks.md
-│   ├── chapter-14-case-studies.md
-│   └── chapter-15-conclusion.md
-│
-├── poc/                               # Proof-of-Concept Implementation
-│   ├── README.md                      # POC documentation
-│   ├── pyproject.toml
-│   ├── core/                          # Core framework
-│   ├── services/                      # 4 microservices
-│   ├── agent/                         # AI orchestrator
-│   ├── tests/                         # 99 passing tests
-│   ├── demos/                         # 6 chapter demonstrations
-│   │   ├── chapter_5_mcp_microservices.py
-│   │   ├── chapter_6_dynamic_ui.py
-│   │   ├── chapter_7_security.py
-│   │   ├── chapter_8_context.py
-│   │   ├── chapter_10_testing.py
-│   │   └── chapter_11_training.py
-│   └── docs/                          # Additional POC docs
-│
-├── demo-slides.html                   # 49-slide interactive presentation
-├── presentations/                     # Presentation system
-│   ├── README.md                      # Build & record slides
-│   ├── slide-config-loader.py         # Generate HTML from YAML
-│   ├── demo-recorder.py               # Record videos
-│   └── slides/                        # Modular YAML content
-│
-└── docs/                              # Repository documentation
-    ├── CONTRIBUTING.md
-    └── LICENSE
-```
+- [Chapters 9-11: Analytics, testing, training pipelines](chapters/)
+
+**Part IV: Transformation** - How to get there
+
+- [Chapters 12-15: Migration path, framework evolution, case studies](chapters/)
+
+👉 **Start here**: [Master Document](ai-native-whitepaper-master.md) (overview) or [All 15 Chapters](chapters/) (browse by topic)
+
+### 💻 POC (Proof of Concept)
+
+Working implementation demonstrating every concept:
+
+- **4 microservices**: Product, Order, Payment, Inventory with MCP wrappers
+- **AI orchestrator**: Discovers services, classifies user intents, executes tools
+- **99 tests**: Core functionality validated
+- **6 runnable demos**: One per chapter
+- **Full integration**: End-to-end workflow showing the whole system
+
+👉 **Start here**: [POC README](poc/README.md) (setup & run) or [POC Source](poc/) (explore code)
+
+### 🎬 Presentation (49 Slides)
+
+Interactive presentation for explaining to teams, available live online or locally.
+
+- 🔴 [Live Presentation](https://coolksrini.github.io/ai-native-application-architecture-whitepaper/demo-slides.html) - 49 slides hosted on GitHub Pages
+- 🛠️ [Presentation System](presentations/README.md) - build and customize your own
+
+👉 **Start here**: [Live Presentation](https://coolksrini.github.io/ai-native-application-architecture-whitepaper/demo-slides.html)
 
 ---
 
-## �💡 TL;DR: Executive Summary
+## How to Explore This
 
-### The Change
+### Quick orientation (15 minutes)
 
-Traditional web applications use REST APIs between services. **AI-native applications replace REST with MCP (Model Context Protocol)**, allowing AI models to directly orchestrate services.
+1. Read [Chapter 1: Paradigm Shift](chapters/chapter-1-paradigm-shift.md) - understand the core concept
+2. Skim the "What Actually Changes" section above - grasp what actually changes
 
-| Aspect | Before (REST) | After (AI-Native) |
-|--------|---------------|-------------------|
-| **How services talk** | HTTP/REST | MCP (JSON-RPC) |
-| **Who decides UI** | Frontend developer | LLM at runtime |
-| **Testing** | Deterministic tests | Probabilistic evaluation (95%+ targets) |
-| **Authorization** | User-only | User + Agent + Intent (3 layers) |
-| **Training** | Optional | Required (per-domain fine-tuning) |
+### Run the code (15 minutes)
 
-### The Impact
+1. Go to [POC README](poc/README.md)
+2. Set up and run the demos
+3. See the concepts working
 
-- **Architecture**: Microservices pattern stays unchanged
-- **Backend**: REST endpoints become MCP tools
-- **Frontend**: Hardcoded components become LLM-selected components
-- **Operations**: Add evaluation gates, context management, intent tracking
-- **Organization**: New roles emerge (Prompt Engineer, Evaluation Engineer, etc.), centralized AI platform teams (~20 engineers)
-- **Timeline**: 18-24 months for 4-phase transformation
+### Understand the details (2-4 hours)
 
-### Why It Matters
+1. [Master Document](ai-native-whitepaper-master.md) - complete overview linking all chapters
+2. [All 15 Chapters](chapters/) - dive into specific topics
 
-1. **Better UX**: Same data, optimized UI for each user's intent
-2. **More capable**: LLMs orchestrate across 10+ services automatically
-3. **Safer**: Triple-layer authorization catches more issues
-4. **Measurable**: Probabilistic testing verifies 95%+ accuracy
-5. **Scalable**: LLM improves with domain fine-tuning
+### By your role
 
----
-
-## � Getting Started (Choose One)
-
-### ⚡ I want to run the code (15 min)
-```bash
-git clone https://github.com/coolksrini/ai-native-application-architecture-whitepaper.git
-cd ai-native-application-architecture-whitepaper/poc
-
-# Setup
-cp .env.example .env
-# Add your ANTHROPIC_API_KEY to .env
-uv sync
-
-# Run tests
-PYTHONPATH=. pytest tests/ -v
-
-# Run a demo
-python poc/demo/chapter_5_mcp_microservices.py
-
-# Start services
-python -m poc.services.service_runner
-```
-
-**Next**: [POC README](poc/README.md) for full guide
-
-### 📚 I want to understand the concepts (2-4 hours)
-1. Read [Chapter 1: Paradigm Shift](chapters/chapter-1-paradigm-shift.md) (15 min)
-2. Read [Chapter 2-4: What Changes](chapters/chapter-2-what-changes.md) (45 min)
-3. Skim [Chapters 5-11: The Implementation](ai-native-whitepaper-master.md) (1-2 hours)
-4. Run POC demos to validate concepts (30 min)
-
-**Next**: [Master Document](ai-native-whitepaper-master.md) for full reading
-
-### 🏢 I want to migrate my org (Strategic planning)
-1. Read [Chapter 12: Migration Path](chapters/chapter-12-migration.md) (30 min)
-2. Read [Chapter 13: Frameworks](chapters/chapter-13-frameworks.md) (20 min)
-3. Review [Chapter 14: Case Studies](chapters/chapter-14-case-studies.md) (15 min)
-4. Use [Live Presentation](https://coolksrini.github.io/ai-native-application-architecture-whitepaper/demo-slides.html) to pitch to leadership (30 min)
-
-**Next**: Contact us for consulting/implementation support
-
----
-
-## 📚 Deep Dives
-
-### Understanding the Architecture
-- [Master Document](ai-native-whitepaper-master.md) - Complete overview
-- [Chapter 5: MCP Microservices](chapters/chapter-5-mcp-microservices.md) - Core architectural pattern
-- [Chapter 6: UI Layer](chapters/chapter-6-ui-layer.md) - How AI picks components
-- [Chapter 8: Context Management](chapters/chapter-8-context.md) - Handling conversation state
-
-### Building & Operating
-- [Chapter 7: Security](chapters/chapter-7-security.md) - Triple-layer authorization
-- [Chapter 10: Testing](chapters/chapter-10-testing.md) - Probabilistic evaluation
-- [Chapter 11: Training](chapters/chapter-11-training.md) - Domain fine-tuning pipelines
-- [Chapter 9: Analytics](chapters/chapter-9-analytics.md) - Intent-based metrics
-
-### Implementation & Transformation
-- [Chapter 12: Migration Path](chapters/chapter-12-migration.md) - 4-phase transformation roadmap
-- [Chapter 13: Framework Evolution](chapters/chapter-13-frameworks.md) - What frameworks need
-- [Chapter 14: Case Studies](chapters/chapter-14-case-studies.md) - Real-world examples
-- [Chapter 15: Conclusion](chapters/chapter-15-conclusion.md) - The road ahead
+- **Engineering Leader**: Read Chapter 1 + Chapter 12 (migration) + POC README
+- **Architect**: Read Chapters 5-8 (the architecture) + POC code
+- **Engineer**: Start with POC README + run demos + read Chapter 5
+- **ML/Platform Engineer**: Focus on Chapters 10-11 (testing/training) + evaluation framework
+- **Learning/Research**: Start with Master Document + explore chapters by interest
 
 ---
 
@@ -300,137 +145,48 @@ All concepts are validated with working code:
 
 ---
 
-## 📖 Content Overview
+## FAQ
 
-### Whitepaper (15 Chapters, 20K+ lines)
+**Q: Is this just REST vs MCP?**
 
-**Part I: Understanding the Change** (Chapters 1-4)
-- What's different about AI-native apps
-- What architectural patterns remain the same
-- What's entirely new
+A: No. The protocol matters less than what it enables. The real change is that your UI becomes dynamic (LLM picks components), your testing becomes probabilistic (you measure accuracy not bugs), and your org structure shifts (new roles, new team designs).
 
-**Part II: Technical Architecture** (Chapters 5-8)
-- MCP-enabled microservices
-- Dynamic UI rendering
-- Security in the AI era
-- Context and state management
+**Q: Do I need MCP?**
 
-**Part III: Operations** (Chapters 9-11)
-- Analytics and observability
-- Testing and quality assurance
-- Training and fine-tuning
+A: If you're building AI-orchestrated systems, yes. MCP lets LLMs safely understand and call your services. It's the interface layer that makes AI orchestration possible.
 
-**Part IV: Implementation** (Chapters 12-15)
-- Migration path for existing orgs
-- Framework evolution
-- Case studies with real examples
-- The road ahead
+**Q: Can I retrofit this onto existing systems?**
 
-### POC Implementation (6K+ lines)
+A: Yes. Your existing microservices stay unchanged. You add MCP wrappers, deploy an AI orchestrator, and gradually migrate traffic. See Chapter 12.
 
-- **4 Microservices**: Product, Order, Payment, Inventory
-- **AI Orchestrator**: Discovers services, classifies intents, executes tools
-- **99 Tests**: All major components tested
-- **6 Demos**: One per chapter (5-11)
-- **Full Integration**: Works end-to-end
+**Q: Is fine-tuning required?**
 
-### Presentation System (49 Slides)
+A: For production, yes. Generic LLMs achieve ~70-80% accuracy on domain-specific tasks. Fine-tuning gets you to 95%+. See Chapter 11.
 
-- Interactive YAML-based slides
-- Automatic video recording
-- Responsive design
-- Export to HTML/PDF
+**Q: How long does this take?**
+
+A: 18-24 months for most organizations, in 4 phases: pilot, platform, rollout, optimization. See Chapter 12 for details.
+
+**Q: Is this only for big companies?**
+
+A: No. Startups have an advantage - build AI-native from day 1 instead of modernizing legacy systems. See Chapter 14 case studies.
+
+**Q: How does this affect tracking, analytics, and marketing?**
+
+A: Dramatically. Traditional UI-based analytics become partially obsolete when users interact directly with backend services through chat/LLM. You lose visibility into UI interactions. Enterprise functions must adapt: tracking shifts from UI events to intent/API calls, analytics focuses on LLM decision patterns and outcomes, marketing must work with algorithmic UI selection instead of designed experiences. This is a visible impact of ChatGPT penetration — UIs become redundant when users can directly interface with services through natural language.
 
 ---
 
-## ❓ FAQ
+Licensed under [CC BY 4.0](LICENSE). Free to use, adapt, share with attribution.
 
-**Q: Is this just about REST vs MCP?**  
-A: No. REST vs MCP is just the protocol change. The real revolution is dynamic UI, probabilistic testing, and organizational restructuring.
-
-**Q: Do I need to use MCP?**  
-A: If you're building AI-orchestrated systems, yes. MCP is what allows LLMs to understand and call your services safely.
-
-**Q: Can I use this with my existing microservices?**  
-A: Yes! Your services stay the same. You add MCP wrappers and deploy an AI orchestrator alongside them.
-
-**Q: Is fine-tuning required?**  
-A: For production, yes. Generic models achieve ~70-80% accuracy. Fine-tuning on your domain gets you to 95%+.
-
-**Q: How long does transformation take?**  
-A: 18-24 months for most organizations, in 4 phases. See [Chapter 12](chapters/chapter-12-migration.md).
-
-**Q: What if I'm a startup, not enterprise?**  
-A: You have an advantage! Skip legacy modernization, build AI-native from day 1. See [Chapter 14](chapters/chapter-14-case-studies.md) for examples.
+**Last Updated**: October 27, 2025 | **POC**: ✅ Complete | **Whitepaper**: ✅ Complete
 
 ---
 
-## 🎓 Learning Paths
+### 🤝 Community & Contributions
 
-### Path 1: Executive (1 hour total)
-- [ ] Read [TL;DR](#tldr-executive-summary) (5 min)
-- [ ] Skim [Chapter 1](chapters/chapter-1-paradigm-shift.md) (15 min)
-- [ ] Review [Key Findings](#key-findings) above (10 min)
-- [ ] Watch POC demo: `python poc/demo/chapter_5_mcp_microservices.py` (10 min)
-- [ ] Read [Chapter 12](chapters/chapter-12-migration.md) migration path (20 min)
+Questions, feedback, or want to contribute?
 
-### Path 2: Architect (4 hours total)
-- [ ] Read [Chapter 1-4](chapters/chapter-1-paradigm-shift.md) (1 hour)
-- [ ] Read [Chapters 5-8](chapters/chapter-5-mcp-microservices.md) (1.5 hours)
-- [ ] Run POC, explore code (30 min)
-- [ ] Read [Chapter 12-13](chapters/chapter-12-migration.md) (1 hour)
-
-### Path 3: Engineer (6 hours total)
-- [ ] Read [Chapters 5-8](chapters/chapter-5-mcp-microservices.md) (1.5 hours)
-- [ ] Run POC end-to-end (1 hour)
-- [ ] Read and modify `poc/agent/orchestrator.py` (1 hour)
-- [ ] Read [Chapter 10-11](chapters/chapter-10-testing.md) (1 hour)
-- [ ] Build a custom service (1.5 hours)
-
-### Path 4: Complete (16 hours)
-- [ ] Read entire whitepaper (8 hours)
-- [ ] Explore full POC codebase (4 hours)
-- [ ] Run and modify demos (2 hours)
-- [ ] Review presentation system (2 hours)
-
----
-
-## 📄 License & Attribution
-
----
-
-## � Quick Links
-
-**Documentation**
-- [Master Document](ai-native-whitepaper-master.md) - Complete overview
-- [All 15 Chapters](chapters/) - Individual chapters
-
-**Code**
-- [POC README](poc/README.md) - How to run it
-- [POC Source](poc/) - The implementation
-- [Chapter Demos](poc/demo/) - Executable examples
-
-**Presentation**
-- 🎬 [Live Presentation](https://coolksrini.github.io/ai-native-application-architecture-whitepaper/demo-slides.html) - Interactive 49-slide presentation (hosted live)
-- 📁 [Local Version](demo-slides.html) - Download and open locally
-- 🛠️ [Presentation System](presentations/) - Build & record your own
-- 📖 [Case Studies](chapters/chapter-14-case-studies.md) - Real examples
-
-**Support**
-- [Issues](https://github.com/coolksrini/ai-native-application-architecture-whitepaper/issues) - Bug reports
-- [Discussions](https://github.com/coolksrini/ai-native-application-architecture-whitepaper/discussions) - Questions
-- [Contributing](CONTRIBUTING.md) - How to help
-
----
-
-## 📄 License & Attribution
-
-Licensed under [CC BY 4.0](LICENSE). Free to use, share, and adapt with attribution.
-
----
-
-**Last Updated**: October 27, 2025  
-**POC Status**: ✅ 99/99 tests passing  
-**Whitepaper Status**: ✅ Complete and validated
-
-� **Ready to dive in? Start with [POC README](poc/README.md) or [Master Document](ai-native-whitepaper-master.md)**
+- [Issues](https://github.com/coolksrini/ai-native-application-architecture-whitepaper/issues) - Report bugs or request features
+- [Discussions](https://github.com/coolksrini/ai-native-application-architecture-whitepaper/discussions) - Ask questions and discuss ideas
+- [Contributing](CONTRIBUTING.md) - Guidelines for contributing
