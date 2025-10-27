@@ -172,7 +172,7 @@ python -m poc.services.service_runner
 1. Read [Chapter 12: Migration Path](chapters/chapter-12-migration.md) (30 min)
 2. Read [Chapter 13: Frameworks](chapters/chapter-13-frameworks.md) (20 min)
 3. Review [Chapter 14: Case Studies](chapters/chapter-14-case-studies.md) (15 min)
-4. Use [Presentation System](presentations/) with [demo-slides.html](demo-slides.html) to pitch to leadership (30 min)
+4. Use [Live Presentation](https://coolksrini.github.io/ai-native-application-architecture-whitepaper/demo-slides.html) to pitch to leadership (30 min)
 
 **Next**: Contact us for consulting/implementation support
 
@@ -325,9 +325,10 @@ A: You have an advantage! Skip legacy modernization, build AI-native from day 1.
 - [Chapter Demos](poc/demo/) - Executable examples
 
 **Presentation**
-- [Interactive Slides](demo-slides.html) - 49-slide presentation (open in browser)
-- [Presentation System](presentations/) - Build & record your own
-- [Case Studies](chapters/chapter-14-case-studies.md) - Real examples
+- 🎬 [Live Presentation](https://coolksrini.github.io/ai-native-application-architecture-whitepaper/demo-slides.html) - Interactive 49-slide presentation (hosted live)
+- 📁 [Local Version](demo-slides.html) - Download and open locally
+- 🛠️ [Presentation System](presentations/) - Build & record your own
+- 📖 [Case Studies](chapters/chapter-14-case-studies.md) - Real examples
 
 **Support**
 - [Issues](https://github.com/coolksrini/ai-native-application-architecture-whitepaper/issues) - Bug reports
