@@ -31,6 +31,18 @@ To stay relevant, applications must adapt to this new interaction model. Instead
 
 **This requires a different architecture** — not because MCP is better than REST, but because **user expectations have fundamentally changed**.
 
+### Novel Architectural Patterns
+
+This whitepaper identifies three architectural innovations specifically designed for AI-orchestrated systems — patterns not commonly found in traditional application architecture or LLM literature:
+
+1. **Triple-Layer Authorization (User + Agent + Intent)** — A security model addressing the unique risk surface of AI agents. Not just "is the user authorized?" but "is this agent authorized to act?" and "does the user's stated intent match what the agent is about to execute?" See [Chapter 7: Security](chapters/chapter-7-security.md) for implementation.
+
+2. **Three-Dimensional Function Calling Evaluation** — Why traditional software testing fails for AI orchestration. Testing must validate across three independent dimensions: phrasing generalization (new phrasings of known intents), zero-shot tool generalization (completely new APIs never seen during training), and multi-turn orchestration (can the AI chain tools correctly?). See [Chapter 10: Testing](chapters/chapter-10-testing.md) for evaluation framework.
+
+3. **Centralized Cross-Service Testing Team** — The organizational pattern for catching orchestration failures. Service-level testing validates individual tools work; end-to-end scenario testing validates the AI orchestrates across services correctly. This requires a dedicated team with holistic system understanding. See [Chapter 12: Migration](chapters/chapter-12-migration.md) for organizational structure.
+
+These patterns emerge from the fundamental requirement that **AI agents, not humans, make orchestration decisions at runtime**.
+
 ### What Actually Changes
 
 | Aspect | Before | After | Why |
