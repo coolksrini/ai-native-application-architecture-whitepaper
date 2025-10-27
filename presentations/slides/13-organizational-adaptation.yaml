@@ -1,0 +1,154 @@
+sections:
+  - name: "Organizational Adaptation"
+    slides:
+      - id: org_1
+        title: "Team Structure Shift"
+        narration: |
+          Frontend developers become less critical
+          New roles: Prompt Engineers, Evaluation Engineers
+          ML specialists now essential
+          Backend focus shifts to MCP services
+          Entire skill mix changes
+        duration: 25
+        content_type: "text"
+        content: |
+          TRADITIONAL VS AI-NATIVE TEAMS
+          ═════════════════════════════
+          
+          TRADITIONAL (10 people)
+          ──────────────────────
+          Frontend Engineers: 4
+          Backend Engineers: 3
+          QA Engineers: 2
+          DevOps Engineer: 1
+          
+          AI-NATIVE (10 people)
+          ────────────────────
+          Backend Engineers: 2
+          Prompt Engineers: 2
+          Evaluation Engineers: 2
+          ML/Fine-tuning Engineer: 1
+          AI Platform Engineer: 1
+          DevOps Engineer: 1
+          
+          Key Differences:
+          • No frontend UI specialists
+          • More specialization in ML/AI
+          • QA transforms to evaluators
+          • Backend requires MCP expertise
+          • Data science becomes core
+      
+      - id: org_2
+        title: "New Role: Prompt Engineer"
+        narration: |
+          Optimizes LLM instructions
+          Improves classification accuracy
+          Tunes model responses
+          Highly leveraged role
+          Direct impact on quality
+        duration: 25
+        content_type: "text"
+        content: |
+          PROMPT ENGINEER ROLE
+          ════════════════════
+          
+          Responsibilities:
+          • Design intent classification prompts
+          • Optimize for accuracy and speed
+          • Test response variations
+          • Handle error cases
+          • Measure and iterate
+          
+          Skills:
+          • Understanding of LLM behavior
+          • Linguistics knowledge
+          • Testing and metrics
+          • Creativity and experimentation
+          • User empathy
+          
+          Impact:
+          • 1% improvement = significant ROI
+          • Directly affects user experience
+          • Highly leveraged role
+      
+      - id: org_3
+        title: "New Role: Evaluation Engineer"
+        narration: |
+          Designs test suites for probabilistic systems
+          Measures accuracy across dimensions
+          Makes deployment decisions
+          Owns quality gates and metrics
+        duration: 25
+        content_type: "text"
+        content: |
+          EVALUATION ENGINEER ROLE
+          ════════════════════════
+          
+          Responsibilities:
+          • Design scenario-based tests
+          • Measure three-dimensional accuracy
+          • Set quality thresholds
+          • Make go/no-go decisions
+          • Analyze metrics and trends
+          
+          Skills:
+          • Statistical thinking
+          • Test design
+          • Metrics analysis
+          • LLM understanding
+          • Systems thinking
+          
+          Impact:
+          • Prevents bad releases
+          • Catches regressions early
+          • Builds confidence in system
+      
+      - id: org_4
+        title: "Migration: 4 Phases Over 18-24 Months"
+        narration: |
+          Phase 1: Pilot small team
+          Phase 2: Build platform
+          Phase 3: Expand rollout
+          Phase 4: Optimize and complete
+        duration: 30
+        content_type: "text"
+        content: |
+          TRANSFORMATION TIMELINE
+          ══════════════════════
+          
+          PHASE 1: PILOT (Months 1-3)
+          ───────────────────────────
+          • Small team: 3-4 people
+          • One customer segment
+          • Parallel with traditional UI
+          • Goal: Prove concept works
+          
+          PHASE 2: PLATFORM (Months 4-9)
+          ──────────────────────────────
+          • Expand team: 8-10 people
+          • Build MCP framework
+          • Hire specialized roles
+          • Goal: Build infrastructure
+          
+          PHASE 3: ROLLOUT (Months 10-18)
+          ────────────────────────────────
+          • Scale team: 15+ people
+          • Expand to more customer segments
+          • Run both UIs in parallel
+          • Goal: Prove at scale
+          
+          PHASE 4: COMPLETE (Months 19-24)
+          ─────────────────────────────────
+          • Final migration
+          • Decommission traditional UI
+          • Optimize costs
+          • Goal: Achieve full transformation
+          
+          ─────────────────────────────────
+          
+          INVESTMENT & RETURN
+          ├─ Team: 3 → 15 people
+          ├─ Cost: $2-3M
+          ├─ Breakeven: Month 12-15
+          ├─ Year 2+: $5M+ annual benefit
+          └─ Competitive position: Transformed

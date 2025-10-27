@@ -6,8 +6,8 @@ Interactive presentation system for teaching and presenting the [AI-Native Appli
 
 This is a complete presentation of the AI-native architecture concepts:
 
-- **49 interactive slides** across 12 sections
-- **20.4 minutes** of content covering all 15 whitepaper chapters
+- **62 interactive slides** across 14 sections
+- **25.9 minutes** of content: business context + technical implementation + organizational adaptation
 - **Automatic video recording** via Playwright (WebM format)
 - **Modular YAML content** - easy to customize
 - **Responsive design** - works on desktop, tablet, mobile
@@ -24,13 +24,14 @@ This is a complete presentation of the AI-native architecture concepts:
 
 | Section | Slides | Topics |
 |---------|--------|--------|
+| Evolution & Context | 4 | ChatGPT impact, expectation shift, market evidence, business implications |
+| Business Case | 5 | Speed-to-market, development velocity, cost transformation, user engagement, competitive positioning |
 | Introduction | 3 | Paradigm shift, problems solved, what we built |
-| Core Concepts | 3 | MCP services, LLM role, multiple intents |
-| Architecture | 5 | Deployment, multi-turn, security, testing |
-| Operations | 3 | Analytics, context, training |
-| Migration | 3 | Migration path, frameworks, benefits |
-| Conclusion | 4 | Organizational changes, future directions |
-| *Additional* | *20* | Deep dives into each major concept |
+| Core Concepts | 7 | MCP services, LLM role, multiple intents, deployment, multi-turn orchestration |
+| Architecture | 14 | Security (with triple-layer auth), testing (3D approach + cross-service team), architecture flow |
+| Organizational | 4 | Team structure shift, prompt engineer role, evaluation engineer role, 18-24 month migration |
+| Conclusion | 4 | Next steps, competitive timeline, call to action |
+| **TOTAL** | **62** | **Complete business + technical + organizational story** |
 
 ---
 

@@ -1,0 +1,187 @@
+sections:
+  - name: "Evolution & Context"
+    slides:
+      - id: evo_1
+        title: "The Market Shift: ChatGPT Changed Everything"
+        narration: |
+          November 2022: ChatGPT launched
+          100 million users in 2 months (fastest growing app ever)
+          Users experienced something different
+          Natural language interaction became the baseline
+          Everything else started feeling obsolete
+        duration: 25
+        content_type: "diagram"
+        content: |
+          THE MARKET SHIFT
+          ════════════════
+          
+          BEFORE CHATGPT (2022)
+          ────────────────────
+          User Expectation Model:
+          • Click buttons
+          • Fill forms
+          • Navigate menus
+          • Learn UI structure
+          • Repeat every session
+          
+          App Philosophy:
+          "Users adapt to our interface"
+          
+          ─────────────────────────────
+          
+          AFTER CHATGPT (2023-2025)
+          ────────────────────────────
+          User Expectation Model:
+          • Express intent naturally
+          • Get results instantly
+          • AI understands context
+          • Natural conversation
+          • Personalized experience
+          
+          App Philosophy:
+          "We adapt to user intent"
+          
+          ─────────────────────────────
+          
+          THE IMPLICATION
+          ───────────────
+          Traditional UIs now feel:
+          ✗ Inflexible
+          ✗ Clunky
+          ✗ Outdated
+          ✗ Wrong
+          
+          Users expect:
+          ✓ Conversation
+          ✓ Understanding
+          ✓ Adaptation
+          ✓ Intelligence
+      
+      - id: evo_2
+        title: "The Expectation Shift"
+        narration: |
+          Users don't want to learn your UI
+          Users want to tell you what they want
+          That's not a feature request
+          That's the baseline now
+          Companies ignoring this are losing market share
+        duration: 25
+        content_type: "text"
+        content: |
+          USER EXPECTATION EVOLUTION
+          ══════════════════════════
+          
+          GENERATION 1: Command Line (1980s)
+          └─ Users learn syntax
+             "ls -la /home/user"
+          
+          GENERATION 2: GUI Era (1990s-2000s)
+          └─ Users learn UI
+             "File → Open → Choose Folder"
+          
+          GENERATION 3: Mobile/Touch (2010s)
+          └─ Users learn gestures
+             "Tap, swipe, long-press"
+          
+          GENERATION 4: Conversational (2020s)
+          └─ Users express intent
+             "Show me red dresses under $100"
+          
+          ─────────────────────────────────
+          
+          THE PATTERN
+          ───────────
+          Each generation:
+          • Shifts burden from user to system
+          • Makes human expression more natural
+          • Reduces cognitive load
+          • Raises baseline expectations
+          
+          We've reached natural language.
+          You can't go backwards.
+          You can only improve from here.
+      
+      - id: evo_3
+        title: "What Companies Are Seeing"
+        narration: |
+          Users prefer conversational interfaces
+          ChatGPT usage dominates
+          Perplexity growing at 100%+ annually
+          Traditional apps losing engagement
+          Market is rewarding AI-native builders
+        duration: 25
+        content_type: "diagram"
+        content: |
+          MARKET EVIDENCE
+          ═══════════════
+          
+          Perplexity AI Metrics (2024):
+          ├─ 22 million active users
+          ├─ 1 billion queries answered
+          ├─ 100% year-over-year growth
+          └─ $9 billion valuation
+          
+          ChatGPT Metrics (2024):
+          ├─ 100+ million weekly active users
+          ├─ Enterprise adoption accelerating
+          ├─ Changing how knowledge workers work
+          └─ Building competitive moat through interface
+          
+          Market Implication:
+          ├─ Users are migrating to conversational
+          ├─ Money follows engagement
+          ├─ Traditional UIs becoming commodity
+          ├─ Differentiation through AI orchestration
+          └─ First-mover advantage is real
+          
+          For Your Business:
+          If you're not building AI-native now:
+          ├─ Your competitors are
+          ├─ Your users expect it
+          ├─ Your roadmap is outdated
+          └─ Your market position is at risk
+      
+      - id: evo_4
+        title: "Why This Evolution Matters"
+        narration: |
+          Not optional anymore
+          Not a nice-to-have feature
+          Not a competitive advantage
+          It's survival
+          The question isn't if, it's when
+        duration: 25
+        content_type: "text"
+        content: |
+          THE BUSINESS REALITY
+          ════════════════════
+          
+          Three Years Ago (2022):
+          "AI in our app" = Innovation
+          "Let's add a chatbot" = Competitive advantage
+          
+          Today (2025):
+          "No AI orchestration" = Risk
+          "Traditional UI only" = Obsolete
+          "Generic LLM integration" = Non-differentiator
+          
+          Tomorrow (2026-2027):
+          "Not AI-native" = Uncompetitive
+          "Not fine-tuned" = Low quality
+          "Not optimized for agents" = Lost users
+          
+          ─────────────────────────────
+          
+          The Acceleration:
+          ├─ Market shifts faster than most realize
+          ├─ User expectations are ratcheting up
+          ├─ LLM quality improving 10x annually
+          ├─ Hallucination problems being solved (MCP)
+          ├─ Early adopters building moat
+          └─ Late movers playing catch-up
+          
+          Your Choice:
+          Option A: Build AI-native now
+          Option B: Defend market share later
+          
+          There is no wait-and-see
+          There is only lead or follow

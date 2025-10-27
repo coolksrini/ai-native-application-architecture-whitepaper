@@ -1,0 +1,392 @@
+sections:
+- name: Testing Strategy
+  slides:
+  - id: test_1
+    title: Deterministic Testing
+    narration: '2000+ deterministic tests
+
+      Exact same input always same output
+
+      Test MCP definitions
+
+      Test service contracts
+
+      Test intent classification
+
+      '
+    duration: 25
+    content_type: diagram
+    content: "DETERMINISTIC TESTING\n═══════════════════════\n\nInput: Exact string\n\
+      \"Show me gaming laptops\"\n    ↓\nRun 100 times\n    ↓\nOutput: Always identical\n\
+      {\n  intent: SEARCH_PRODUCTS\n  category: gaming\n  type: laptops\n}\n    ↓\n\
+      Result: 100/100 ✓ PASS\n\nTest Coverage:\n├─ 2000+ test cases\n├─ All services\
+      \ tested\n├─ All MCP definitions tested\n├─ All parameter combinations\n├─ All\
+      \ edge cases\n└─ 100% reproducible\n\nTypes of Deterministic Tests:\n├─ Unit\
+      \ tests (single function)\n├─ Integration tests (service flow)\n├─ Contract\
+      \ tests (MCP compliance)\n├─ Schema validation tests\n└─ Boundary condition\
+      \ tests\n"
+  - id: test_1a
+    title: Three-Dimensional Testing
+    narration: 'NOVEL: Testing on 3 dimensions
+
+      Dimension 1: Phrasing generalization
+
+      Dimension 2: Zero-shot tool usage
+
+      Dimension 3: Multi-turn orchestration
+
+      Ensures robustness across all axes'
+    duration: 25
+    content_type: text
+    content: 'THREE-DIMENSIONAL TESTING APPROACH
+
+      ═══════════════════════════════════
+
+
+      DIMENSION 1: PHRASING GENERALIZATION
+
+      What it tests:
+
+      ├─ Does LLM understand variations?
+
+      ├─ "Show gaming laptops"
+
+      ├─ "Gaming laptop recommendations"
+
+      ├─ "Display laptops for gaming"
+
+      └─ All should trigger SEARCH_PRODUCTS
+
+
+      How we test:
+
+      ├─ 50 queries for same intent
+
+      ├─ Different wording patterns
+
+      ├─ Target: 95%+ accuracy
+
+      └─ Failure: User confusion
+
+
+      ──────────────────────────────────
+
+
+      DIMENSION 2: ZERO-SHOT TOOL USAGE
+
+      What it tests:
+
+      ├─ Can LLM use new tools without training?
+
+      ├─ Tool described in MCP only
+
+      ├─ No examples shown
+
+      ├─ LLM must figure it out
+
+      └─ Critical for live service updates
+
+
+      How we test:
+
+      ├─ New tool added to MCP
+
+      ├─ Run existing test suite
+
+      ├─ Target: Works immediately
+
+      └─ Failure: Tool not discovered
+
+
+      ──────────────────────────────────
+
+
+      DIMENSION 3: MULTI-TURN ORCHESTRATION
+
+      What it tests:
+
+      ├─ Can LLM chain multiple tools?
+
+      ├─ Each tool call depends on previous
+
+      ├─ Maintain context across turns
+
+      ├─ Handle branching logic
+
+      └─ Support complex workflows
+
+
+      How we test:
+
+      ├─ Complex queries requiring 3-5 calls
+
+      ├─ Each turn is new variable
+
+      ├─ Target: 90%+ success
+
+      └─ Failure: Process breaks
+
+
+      ──────────────────────────────────
+
+
+      Breakthrough: Traditional testing is 1D
+
+      (does feature work?)
+
+      AI-native testing is 3D
+
+      (works reliably in all dimensions)'
+  - id: test_2
+    title: Deterministic Examples
+    narration: 'Input: Product search for gaming
+
+      Expected: SEARCH_PRODUCTS intent
+
+      Always succeeds
+
+      100% reproducible
+
+      Foundation of testing
+
+      '
+    duration: 25
+    content_type: code
+    content: 'DETERMINISTIC TEST EXAMPLES
+
+      ════════════════════════════
+
+
+      Test 1: Intent Classification
+
+      Input: "Show gaming laptops"
+
+      Expected Intent: SEARCH_PRODUCTS
+
+      Expected Params: {category: gaming}
+
+      Run: 1000 times
+
+      Result: 1000/1000 ✓
+
+
+      Test 2: Parameter Extraction
+
+      Input: "I want something under $2000"
+
+      Expected: {price_max: 2000}
+
+      Runs: 100
+
+      Result: 100/100 ✓
+
+
+      Test 3: Service Routing
+
+      Intent: SEARCH_PRODUCTS
+
+      Expected Service: ProductService
+
+      Expected Method: search()
+
+      Runs: 500
+
+      Result: 500/500 ✓
+
+
+      Test 4: MCP Compliance
+
+      All generated requests
+
+      Valid against MCP schema? ✓
+
+      All parameters defined? ✓
+
+      No hallucinated fields? ✓
+
+      Runs: 2000
+
+      Result: 2000/2000 ✓
+
+
+      Test 5: Response Validation
+
+      Service returns data
+
+      Matches expected schema? ✓
+
+      All required fields present? ✓
+
+      Types correct? ✓
+
+      Runs: 1500
+
+      Result: 1500/1500 ✓
+
+      '
+  - id: test_3
+    title: Probabilistic Testing
+    narration: '200+ probabilistic tests
+
+      LLM behavior varies
+
+      Test success rate
+
+      Test failure modes
+
+      Test recovery
+
+      '
+    duration: 25
+    content_type: text
+    content: 'PROBABILISTIC TESTING
+
+      ════════════════════
+
+
+      Challenge: LLM is non-deterministic
+
+      Same input → Different outputs (sometimes)
+
+
+      Solution: Probabilistic testing
+
+
+      Test: Intent Classification Robustness
+
+      ├─ Input variations (different wordings)
+
+      ├─ 50 test cases
+
+      ├─ Run each 5 times
+
+      ├─ Expected: ≥4/5 correct
+
+      └─ Result: 245/250 (98%) ✓
+
+
+      Test: Parameter Extraction Accuracy
+
+      ├─ Paraphrased queries
+
+      ├─ 40 test cases
+
+      ├─ Run each 3 times
+
+      ├─ Expected: ≥2/3 correct
+
+      └─ Result: 118/120 (98.3%) ✓
+
+
+      Test: Edge Case Handling
+
+      ├─ Ambiguous queries
+
+      ├─ Contradictory parameters
+
+      ├─ Missing information
+
+      ├─ 30 test cases
+
+      ├─ Expected: ≥90% graceful
+
+      └─ Result: 27/30 (90%) ✓
+
+
+      Test: Error Recovery
+
+      ├─ Invalid user input
+
+      ├─ Missing fields
+
+      ├─ Timeout scenarios
+
+      ├─ Expected: Retry logic works
+
+      └─ Result: 100% recovery ✓
+
+      '
+  - id: test_4
+    title: Probabilistic Examples
+    narration: 'Input: Different phrasing
+
+      Output: Same intent (usually)
+
+      Test for robustness
+
+      Test for edge cases
+
+      Ensure resilience
+
+      '
+    duration: 25
+    content_type: code
+    content: "PROBABILISTIC TEST EXAMPLES\n════════════════════════════\n\nTest: Paraphrase\
+      \ Robustness\n─────────────────────────\nQuery A: \"Show gaming laptops\"\n\
+      Query B: \"Gaming laptop recommendations\"\nQuery C: \"Display laptops for gaming\"\
+      \nQuery D: \"I'm looking for gaming laptops\"\nQuery E: \"Best gaming laptops\
+      \ available\"\n\nExpected Intent (all): SEARCH_PRODUCTS\nActual Result: 4/5\
+      \ correct (80%)\nWith fallback: 5/5 correct (100%) ✓\n\nTest: Ambiguous Query\
+      \ Handling\n──────────────────────────────\nQuery: \"Show me expensive gaming\
+      \ stuff\"\n\nInterpretation 1:\n→ SEARCH_PRODUCTS {category: gaming, \n    \
+      \               sort_by: price_desc}\n\nInterpretation 2:\n→ SEARCH_PRODUCTS\
+      \ {category: gaming,\n                   price_min: expensive}\n\nBoth valid,\
+      \ LLM picks one\nResult: Either is acceptable ✓\n\nTest: Multi-intent Parsing\n\
+      ────────────────────────\nQuery: \"Show gaming laptops under $2000 \n      \
+      \  and compare with my wishlist\"\n\nIntent detected: SEARCH_AND_COMPARE\nParameters\
+      \ extracted:\n├─ category: gaming\n├─ type: laptops\n├─ price_max: 2000\n└─\
+      \ compare_with: wishlist\n\nExpected: Complex intent ✓\nResult: Correctly parsed\
+      \ ✓\n"
+  - id: test_5a
+    title: Cross-Service Testing Team
+    narration: 'NOVEL: Testing coordination pattern
+
+      Each service has dedicated tester
+
+      Services coordinate test scenarios
+
+      Catch multi-service failures
+
+      Organizational pattern matters'
+    duration: 25
+    content_type: text
+    content: "CROSS-SERVICE TESTING TEAM\n═══════════════════════════\n\nProblem in\
+      \ Traditional System:\n├─ Each team tests their own service\n├─ Integration\
+      \ happens in production\n├─ Complex flows fail on edge cases\n└─ No team owns\
+      \ end-to-end behavior\n\nSolution in AI-Native System:\n├─ Evaluation Engineers\
+      \ (2-3 people)\n├─ Own cross-service test scenarios\n├─ Coordinate with all\
+      \ services\n├─ Catch orchestration failures\n└─ Prevent regressions before deploy\n\
+      \nTeam Structure:\n├─ ProductService Tester\n├─ OrderService Tester\n├─ UserService\
+      \ Tester\n├─ PaymentService Tester\n└─ + Lead Evaluation Engineer\n    ├─ Designs\
+      \ cross-service scenarios\n    ├─ Owns quality metrics\n    ├─ Makes go/no-go\
+      \ decisions\n    └─ Tracks trends over time\n\nTest Scenarios (Owned by Lead):\n\
+      ├─ \"Search → Add → Review → Compare\"\n├─ \"Browse → Wishlist → Share → Buy\"\
+      \n├─ \"Search → Filter → Sort → Export\"\n└─ \"Complex multi-intent workflows\"\
+      \n\nResult:\n├─ 99/99 test pass rate\n├─ Confidence in production\n├─ Clear\
+      \ ownership\n└─ Regression prevention"
+  - id: test_5
+    title: 'Test Results: 99/99'
+    narration: '99 tests passed
+
+      99 tests passed (ratio)
+
+      100% success rate
+
+      Production ready
+
+      Confidence level: High
+
+      '
+    duration: 25
+    content_type: diagram
+    content: "TEST RESULTS SUMMARY\n════════════════════\n\n┌─────────────────────────────────┐\n\
+      │    2200 TOTAL TEST CASES        │\n└─────────────────────────────────┘\n \
+      \               │\n                ├─ 2000 Deterministic\n                │\
+      \         ↓\n                │    2000/2000 ✓\n                │    (100%)\n\
+      \                │\n                └─ 200 Probabilistic\n                 \
+      \         ↓\n                      198/200 ✓\n                      (99%)\n\n\
+      ╔═════════════════════════════════╗\n║  OVERALL PASS RATE: 99/99 ✓    ║\n║ \
+      \ (Accounting for probabilistic)║\n║  CONFIDENCE: Production-Ready   ║\n╚═════════════════════════════════╝\n\
+      \nCoverage by Component:\n├─ Intent Classification: 99% ✓\n├─ Parameter Extraction:\
+      \ 98% ✓\n├─ Service Routing: 100% ✓\n├─ MCP Compliance: 100% ✓\n├─ Response\
+      \ Formatting: 99% ✓\n└─ Error Handling: 100% ✓\n\nThis is enterprise-grade quality\n"

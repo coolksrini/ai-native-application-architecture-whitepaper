@@ -1,0 +1,97 @@
+sections:
+  - name: "MCP Explained"
+    slides:
+      - id: mcp_1
+        title: "What is MCP? Model Context Protocol"
+        narration: |
+          MCP is the bridge between LLM intelligence and enterprise systems
+          It lets LLM access domain knowledge and business logic
+          LLM can reason within enterprise context
+          Answers are fine-tuned to your specific business
+          Universal language meets enterprise expertise
+          This is the breakthrough: contextualization at scale.
+        duration: 25
+        content_type: "diagram"
+        content: |
+          MCP: Enterprise Context Integration
+          ═════════════════════════════════════════
+          
+          ┌──────────────────────┐
+          │   User Intent        │
+          │   (Natural language) │
+          │   "Show me options   │
+          │    within budget"    │
+          └──────┬───────────────┘
+                 │
+                 ↓
+          ┌────────────────────────────┐
+          │   LLM Intelligence         │
+          │   • Understands language   │
+          │   • Reasons about intent   │
+          │   • Makes decisions        │
+          └──────────┬─────────────────┘
+                     │
+                     ↓
+          ┌────────────────────────────┐
+          │   MCP: Domain Integration  │
+          │   • Business logic access  │
+          │   • Enterprise knowledge   │
+          │   • System constraints     │
+          │   • Contextual rules       │
+          └──────────┬─────────────────┘
+                     │
+                     ↓
+          ┌────────────────────────────┐
+          │   Enterprise Answer        │
+          │   (contextually correct)   │
+          │   Tuned to your business   │
+          └────────────────────────────┘
+      
+      - id: mcp_2
+        title: "MCP: LLM + Enterprise Knowledge = Intelligence"
+        narration: |
+          Generic LLM: "Here are good headphones"
+          Enterprise LLM: "Here are our models, in your price range, approved by your company"
+          LLM has become smart: understands context
+          LLM integrates with systems: executes within rules
+          LLM provides enterprise expertise: not generic advice
+          This is the shift that matters.
+        duration: 25
+        content_type: "text"
+        content: |
+          GENERIC LLM vs ENTERPRISE CONTEXT
+          ══════════════════════════════════
+          
+          User: "Show me headphones within my budget"
+          
+          WITHOUT MCP (Generic LLM):
+          ├─ LLM: "Here are popular headphones..."
+          ├─ Prices from 2024 training data
+          ├─ Doesn't know YOUR budget
+          ├─ Doesn't know YOUR approved vendors
+          ├─ Doesn't know YOUR company policies
+          ├─ Not useful in enterprise context
+          └─ User: "That's not what we need"
+          
+          WITH MCP (Enterprise Context):
+          ═════════════════════════════════════
+          
+          User: "Show me headphones within my budget"
+          
+          ├─ LLM sees MCP: enterprise integration
+          ├─ Accesses: Your budget policy ($500 max)
+          ├─ Accesses: Your approved vendors
+          ├─ Accesses: Your company preferences
+          ├─ Accesses: Real-time inventory
+          ├─ Accesses: Your procurement rules
+          ├─ Returns: "3 options from approved vendors"
+          │           "All under $500"
+          │           "In stock at nearest location"
+          └─ Result: Perfectly contextualized answer
+          
+          THE BREAKTHROUGH
+          ════════════════
+          LLM became powerful not by being generic
+          But by integrating with YOUR enterprise
+          Domain knowledge meets language understanding
+          This is enterprise intelligence

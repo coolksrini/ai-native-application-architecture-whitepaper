@@ -145,38 +145,53 @@ sections:
           Check against user permissions
           Prevent intent injection
           Ensure LLM output safe
-          Trust but verify
+          NOVEL: Triple-layer authorization
+          (user + agent + intent)
         duration: 25
         content_type: "diagram"
         content: |
-          INTENT VALIDATION
-          ═════════════════
+          TRIPLE-LAYER AUTHORIZATION
+          ═══════════════════════════
           
-          LLM Output:
-          {
-            intent: "SEARCH_PRODUCTS",
-            parameters: {
-              category: "gaming",
-              price_max: 2000
-            }
-          }
+          Layer A: User Authentication (who?)
+          └─ JWT, multi-factor, device fingerprint
+          
+          Layer B: Agent Authorization (what can LLM do?)
+          └─ MCP constraints limit available tools
+          └─ Tool parameters constrained by type/range
+          
+          Layer C: Intent Authorization (what does user want?)
+          └─ User must have permission for resulting action
+          └─ Even if LLM can call tool, must validate intent match
+          
+          ──────────────────────────────────
+          
+          Example: User wants to "search products"
+          
+          LAYER A: Is this really alice@example.com?
+          ├─ JWT valid? ✓
+          ├─ MFA passed? ✓
+          ├─ Device recognized? ✓
+          └─ Result: User authenticated
               ↓
-          Validation Checks:
-          ├─ Intent in allowed list? ✓
-          ├─ User permission for intent? ✓
-          ├─ Parameters valid type? ✓
-          ├─ Parameters in allowed range? ✓
-          ├─ No injection attempts? ✓
-          ├─ MCP constraint satisfied? ✓
-          └─ Anomaly detection passed? ✓
+          LAYER B: Can LLM call search_products?
+          ├─ MCP lists search_products tool? ✓
+          ├─ Parameters constrained? ✓
+          ├─ No hallucinated functions? ✓
+          └─ Result: Tool access allowed
               ↓
-          ✓ Intent approved
-          ✓ Proceed to service layer
+          LAYER C: Should alice do this?
+          ├─ Alice has search permission? ✓
+          ├─ Intent matches tool? ✓
+          ├─ Parameters valid? ✓
+          ├─ No privilege escalation? ✓
+          └─ Result: Action authorized
               ↓
-          ✗ Invalid intent
-          ✗ Log security event
-          ✗ Return error
-          ✗ Alert security team if suspicious
+          ✓ Execute search
+          
+          Breakthrough: Traditional 2-layer (user + service)
+          expands to 3-layer (user + agent + intent)
+          because LLMs inject new authorization step
       
       - id: sec_5
         title: "Layer 4: Service Authorization"
@@ -221,20 +236,42 @@ sections:
           └─ SOC2: Audit requirements
       
       - id: sec_6
-        title: "Hallucination Prevention"
+        title: "MCP: Enterprise Context Integration"
         narration: |
-          LLM can only call defined tools
-          MCP constraints
-          Parameter validation
-          Response verification
-          No surprises
+          MCP enables LLM to integrate with enterprise systems
+          Access domain knowledge and business logic
+          Answers are contextualized to your business
+          Enforced through MCP constraints
+          This is what makes LLM powerful in enterprise
         duration: 25
         content_type: "code"
         content: |
-          HALLUCINATION PREVENTION
-          ════════════════════════
+          GENERIC LLM vs ENTERPRISE INTEGRATION
+          ═════════════════════════════════════
           
-          MCP Definition (what LLM sees):
+          GENERIC LLM (Pre-Trained Knowledge)
+          ├─ User asks: "Show gaming laptops"
+          ├─ LLM generates generic recommendations
+          ├─ Based on training data (2024)
+          ├─ No context about YOUR business
+          ├─ No access to YOUR inventory
+          ├─ No knowledge of YOUR policies
+          └─ Not enterprise-grade useful
+          
+          ENTERPRISE LLM (MCP-Integrated)
+          ├─ User asks: "Show gaming laptops"
+          ├─ LLM sees MCP: enterprise integration
+          │  └─ Can access: ProductService
+          │  └─ Must respect: company policies
+          │  └─ Must follow: budget constraints
+          ├─ LLM executes within MCP guardrails
+          ├─ Gets: YOUR inventory, YOUR prices
+          ├─ Applies: YOUR business logic
+          └─ Returns: contextualized answer
+          
+          ──────────────────────────────────
+          
+          MCP Definition (enables safe integration):
           tools:
             - name: search_products
               parameters:
@@ -246,24 +283,14 @@ sections:
                   min: 0
                   max: 10000
           
-          Attack Attempt 1: Wrong function
-          LLM tries: call_function("search_all_users")
-          Result: ✗ Function not in MCP
-          Action: Validation fails, retry request
+          Benefit: LLM cannot make up functions
+          ├─ Only tools in MCP available
+          ├─ Only valid parameters accepted
+          ├─ Only constrained value ranges allowed
+          ├─ Invalid attempts fail gracefully
+          └─ Forced to use real tools properly
           
-          Attack Attempt 2: Wrong parameter type
-          LLM tries: search_products(price_max: "expensive")
-          Result: ✗ String not allowed (type: number)
-          Action: Type validation fails, error returned
-          
-          Attack Attempt 3: Invalid enum value
-          LLM tries: search_products(category: "kitchen")
-          Result: ✗ "kitchen" not in [gaming, office]
-          Action: Enum validation fails, error returned
-          
-          Attack Attempt 4: Out of range
-          LLM tries: search_products(price_max: 999999)
-          Result: ✗ 999999 > max (10000)
-          Action: Range validation fails
-          
-          Result: LLM cannot bypass, even if it tries
+          Result: LLM becomes AI agent
+          ├─ Combines understanding with action
+          ├─ Provides live, contextual results
+          └─ Meets natural user expectation
