@@ -34,7 +34,7 @@ class DemoRecorder:
     """Automated recorder for demo presentation slides"""
     
     def __init__(self,
-                 html_file: str = "demo-slides.html",
+                 html_file: str = "../demo-slides.html",
                  output_dir: str = "recordings",
                  headless: bool = False,
                  record_video: bool = True,

@@ -216,7 +216,7 @@ class SlidesConfigLoader:
         total_seconds = sum(slide.duration for slide in self.slides)
         return total_seconds / 60.0
     
-    def generate_html(self, output_file: str = "demo-slides.html") -> str:
+    def generate_html(self, output_file: str = "../demo-slides.html") -> str:
         """Generate HTML presentation from loaded config"""
         html_content = self._build_html()
         

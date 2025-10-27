@@ -68,14 +68,14 @@ poc/
 │   ├── test_training_data.py          # Chapter 11: Training pipeline
 │   └── test_probabilistic.py          # Chapter 10: Probabilistic testing
 │
-├── chapters/                          # Chapter-specific demonstrations
-│   ├── chapter_5_demo.py              # MCP/A2A Services & Orchestration
-│   ├── chapter_6_demo.py              # Dynamic UI rendering
-│   ├── chapter_7_demo.py              # Security & Authorization
-│   ├── chapter_8_demo.py              # Context Management
-│   ├── chapter_10_demo.py             # Probabilistic Testing
-│   ├── chapter_11_demo.py             # Training Data Pipeline
-│   └── results/                       # Chapter results and reports
+├── demo/                              # Chapter-specific demonstrations
+│   ├── chapter_5_mcp_microservices.py # MCP/A2A Services & Orchestration
+│   ├── chapter_6_dynamic_ui.py        # Dynamic UI rendering
+│   ├── chapter_7_security.py          # Security & Authorization
+│   ├── chapter_8_context.py           # Context Management
+│   ├── chapter_10_testing.py          # Probabilistic Testing
+│   ├── chapter_11_training.py         # Training Data Pipeline
+│   └── results/                       # Demo results and reports
 │       ├── chapter_5_results.json     # Microservices results
 │       ├── chapter_6_results.json     # UI selection results
 │       ├── chapter_7_results.json     # Security audit results
@@ -87,6 +87,8 @@ poc/
     ├── DEMO_GUIDE.md                  # How to run demos
     └── FINDINGS.md                    # POC findings & insights
 ```
+
+
 
 ## 🚀 Quick Start
 
@@ -110,6 +112,21 @@ pip install -r requirements.txt
 # Or with UV (faster)
 uv sync
 ```
+
+**Note**: This POC uses the `a2a-sdk` ([Agent2Agent Protocol](https://a2a-protocol.org/)), an open-source framework for building agentic applications. The SDK is automatically installed with the dependencies above. If you need specific features, you can install with extras:
+
+```bash
+# Standard installation
+uv add "a2a-sdk>=0.3.0"
+
+# With optional features (HTTP server, gRPC, telemetry, encryption, SQL drivers)
+uv add "a2a-sdk[all]"
+
+# Or specific extras
+uv add "a2a-sdk[http-server,telemetry]"
+```
+
+See [a2a-sdk documentation](https://a2a-protocol.org/) for more information.
 
 ### Run All Services
 
@@ -135,12 +152,12 @@ python -m poc.agent.orchestrator --interactive
 
 ```bash
 # Run all chapter demos
-python poc/chapters/chapter_5_demo.py    # MCP Services & Orchestration
-python poc/chapters/chapter_6_demo.py    # Dynamic UI Rendering
-python poc/chapters/chapter_7_demo.py    # Security & Authorization
-python poc/chapters/chapter_8_demo.py    # Context Management
-python poc/chapters/chapter_10_demo.py   # Probabilistic Testing
-python poc/chapters/chapter_11_demo.py   # Training Data Pipeline
+python poc/demo/chapter_5_mcp_microservices.py    # MCP Services & Orchestration
+python poc/demo/chapter_6_dynamic_ui.py           # Dynamic UI Rendering
+python poc/demo/chapter_7_security.py             # Security & Authorization
+python poc/demo/chapter_8_context.py              # Context Management
+python poc/demo/chapter_10_testing.py             # Probabilistic Testing
+python poc/demo/chapter_11_training.py            # Training Data Pipeline
 ```
 
 ### Run Test Suite
@@ -162,7 +179,7 @@ pytest tests/ --cov=poc
 Each chapter has a corresponding demonstration:
 
 ### Chapter 5: MCP-Enabled Microservices
-**File:** `poc/demos/chapter5_mcp_microservices_demo.py`
+**File:** `poc/demo/chapter_5_mcp_microservices.py`
 
 Demonstrates:
 - ✅ Services expose A2A Agent Cards instead of REST
@@ -176,7 +193,7 @@ Demonstrates:
 - Service health checks
 
 ### Chapter 6: Dynamic UI Rendering
-**File:** `poc/demos/chapter6_ui_layer_demo.py`
+**File:** `poc/demo/chapter_6_dynamic_ui.py`
 
 Demonstrates:
 - ✅ Same data, different UI based on intent
@@ -208,7 +225,7 @@ Intent: comparison
 - Device adaptation examples
 
 ### Chapter 7: Security & Authorization
-**File:** `poc/demos/chapter7_security_demo.py`
+**File:** `poc/demo/chapter_7_security.py`
 
 Demonstrates:
 - ✅ Triple-layer authorization (User + Agent + Intent)
@@ -243,7 +260,7 @@ Test 3: Intent Mismatch
 - Authorization decision logs
 
 ### Chapter 8: Context & State Management
-**File:** `poc/demos/chapter8_context_demo.py`
+**File:** `poc/demo/chapter_8_context.py`
 
 Demonstrates:
 - ✅ Multi-turn conversation context
@@ -562,10 +579,10 @@ Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0).
 - Use `python -m poc.agent.orchestrator --interactive` to run the agent
 
 **Running Demonstrations:**
-- `python poc/demos/chapter5_mcp_microservices_demo.py` - MCP Services & Orchestration
-- `python poc/demos/chapter6_ui_layer_demo.py` - Dynamic UI Rendering  
-- `python poc/demos/chapter7_security_demo.py` - Security & Authorization
-- `python poc/demos/chapter8_context_demo.py` - Context Management
+- `python poc/demo/chapter_5_mcp_microservices.py` - MCP Services & Orchestration
+- `python poc/demo/chapter_6_dynamic_ui.py` - Dynamic UI Rendering  
+- `python poc/demo/chapter_7_security.py` - Security & Authorization
+- `python poc/demo/chapter_8_context.py` - Context Management
 
 **Running Tests:**
 - `pytest tests/ -v` - Run full test suite

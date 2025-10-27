@@ -1,4 +1,4 @@
-# 🎬 Demo Recording System
+# 🎬 Presentation System
 
 Interactive presentation system for teaching and presenting the [AI-Native Application Architecture Whitepaper](../README.md).
 
@@ -44,7 +44,7 @@ python setup.py
 python slide-config-loader.py
 
 # 3. View in browser
-open demo-slides.html
+open ../demo-slides.html
 
 # 4. Record video
 python demo-recorder.py
@@ -65,7 +65,7 @@ python demo-recorder.py
   - Easy to edit without touching code
 
 ### Generated
-- **`demo-slides.html`** - Interactive HTML presentation (112 KB, responsive, self-contained)
+- **`../demo-slides.html`** - Interactive HTML presentation (112 KB, responsive, self-contained, moved to root for easy access)
 - **`recordings/`** - Video files (WebM format, VP9 codec)
 
 ## Key Features
