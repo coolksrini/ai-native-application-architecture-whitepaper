@@ -45,7 +45,11 @@ Start here → [Chapter 11: Training & Fine-Tuning](chapters/chapter-11-training
 ### 🎓 Student / Learning
 Start here → [Complete Whitepaper](ai-native-whitepaper-master.md) (2-4 hours)
 - Or [TL;DR Summary](#tldr-executive-summary) below (5 minutes)
-- Then run POC demos and explore code
+- - Then run POC demos and explore code
+
+---
+
+## 🔗 Quick Links
 
 ---
 
@@ -103,7 +107,85 @@ Start here → [Complete Whitepaper](ai-native-whitepaper-master.md) (2-4 hours)
 
 ---
 
-## 💡 TL;DR: Executive Summary
+## � Quick Links
+
+**📚 Documentation**
+- [Master Document](ai-native-whitepaper-master.md) - Complete overview
+- [All 15 Chapters](chapters/) - Individual chapters
+
+**💻 Code & Demos**
+- [POC README](poc/README.md) - How to run it
+- [POC Source](poc/) - The implementation
+- [Chapter Demos](poc/demos/) - Executable examples
+
+**🎬 Presentation**
+- 🎬 [Live Presentation](https://coolksrini.github.io/ai-native-application-architecture-whitepaper/demo-slides.html) - Interactive 49-slide presentation (hosted live)
+- 📁 [Local Version](demo-slides.html) - Download and open locally
+- 🛠️ [Presentation System](presentations/) - Build & record your own
+- 📖 [Case Studies](chapters/chapter-14-case-studies.md) - Real examples
+
+**🤝 Community**
+- [Issues](https://github.com/coolksrini/ai-native-application-architecture-whitepaper/issues) - Bug reports & feature requests
+- [Discussions](https://github.com/coolksrini/ai-native-application-architecture-whitepaper/discussions) - Questions & ideas
+- [Contributing](CONTRIBUTING.md) - How to help
+
+---
+
+## � Repository Structure
+
+```
+.
+├── README.md                          ← You are here
+├── ai-native-whitepaper-master.md     # Master document & navigation
+│
+├── chapters/                          # 15 comprehensive chapters
+│   ├── chapter-1-paradigm-shift.md
+│   ├── chapter-2-what-changes.md
+│   ├── chapter-3-what-remains.md
+│   ├── chapter-4-whats-new.md
+│   ├── chapter-5-mcp-microservices.md
+│   ├── chapter-6-ui-layer.md
+│   ├── chapter-7-security.md
+│   ├── chapter-8-context.md
+│   ├── chapter-9-analytics.md
+│   ├── chapter-10-testing.md
+│   ├── chapter-11-training.md
+│   ├── chapter-12-migration.md
+│   ├── chapter-13-frameworks.md
+│   ├── chapter-14-case-studies.md
+│   └── chapter-15-conclusion.md
+│
+├── poc/                               # Proof-of-Concept Implementation
+│   ├── README.md                      # POC documentation
+│   ├── pyproject.toml
+│   ├── core/                          # Core framework
+│   ├── services/                      # 4 microservices
+│   ├── agent/                         # AI orchestrator
+│   ├── tests/                         # 99 passing tests
+│   ├── demos/                         # 6 chapter demonstrations
+│   │   ├── chapter_5_mcp_microservices.py
+│   │   ├── chapter_6_dynamic_ui.py
+│   │   ├── chapter_7_security.py
+│   │   ├── chapter_8_context.py
+│   │   ├── chapter_10_testing.py
+│   │   └── chapter_11_training.py
+│   └── docs/                          # Additional POC docs
+│
+├── demo-slides.html                   # 49-slide interactive presentation
+├── presentations/                     # Presentation system
+│   ├── README.md                      # Build & record slides
+│   ├── slide-config-loader.py         # Generate HTML from YAML
+│   ├── demo-recorder.py               # Record videos
+│   └── slides/                        # Modular YAML content
+│
+└── docs/                              # Repository documentation
+    ├── CONTRIBUTING.md
+    └── LICENSE
+```
+
+---
+
+## �💡 TL;DR: Executive Summary
 
 ### The Change
 
@@ -310,6 +392,10 @@ A: You have an advantage! Skip legacy modernization, build AI-native from day 1.
 - [ ] Explore full POC codebase (4 hours)
 - [ ] Run and modify demos (2 hours)
 - [ ] Review presentation system (2 hours)
+
+---
+
+## 📄 License & Attribution
 
 ---
 
