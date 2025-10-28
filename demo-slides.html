@@ -15,8 +15,9 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
             color: #f1f5f9;
-            overflow: hidden;
-            height: 100vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
@@ -25,7 +26,8 @@
             flex: 1;
             display: flex;
             position: relative;
-            overflow: hidden;
+            overflow: visible;
+            min-height: 100vh;
         }
         
         .slides-container {
@@ -63,6 +65,15 @@
             to { opacity: 1; }
         }
         
+        /* Mobile: Switch to relative positioning for natural scrolling */
+        @media (max-width: 640px) {
+            .slide {
+                position: relative;
+                height: auto;
+                min-height: 100vh;
+            }
+        }
+        
         .slide-container {
             display: flex;
             height: 100%;
@@ -95,6 +106,34 @@
             justify-content: center;
             overflow-y: auto;
             padding-left: 15px;
+        }
+        
+        /* Mobile: Make slide content stack vertically and allow scrolling */
+        @media (max-width: 640px) {
+            .slide-container {
+                flex-direction: column;
+                height: auto;
+                align-items: stretch;
+                padding: 15px;
+                gap: 5px;
+            }
+            
+            .slide-left {
+                flex: 0 0 auto;
+                overflow-y: visible;
+                border-right: none;
+                border-bottom: 2px solid rgba(100, 200, 255, 0.3);
+                padding-right: 0;
+                padding-bottom: 10px;
+            }
+            
+            .slide-right {
+                flex: 0 0 auto;
+                overflow-y: visible;
+                align-items: flex-start;
+                padding-left: 0;
+                padding-top: 10px;
+            }
         }
         
         .slide-header {
@@ -270,26 +309,6 @@
         
         /* Responsive Design */
         @media (max-width: 1024px) {
-            .slide-container {
-                flex-direction: column;
-                gap: 10px;
-                padding: 20px;
-            }
-            
-            .slide-left {
-                flex: 0 0 auto;
-                border-right: none;
-                border-bottom: 2px solid rgba(100, 200, 255, 0.3);
-                padding-right: 0;
-                padding-bottom: 10px;
-            }
-            
-            .slide-right {
-                flex: 1;
-                padding-left: 0;
-                padding-top: 10px;
-            }
-            
             .narration li {
                 font-size: 1.2rem;
                 line-height: 1.8;
@@ -301,28 +320,6 @@
         }
         
         @media (max-width: 640px) {
-            body {
-                overflow-y: auto;
-            }
-            
-            .slide-container {
-                padding: 15px;
-                gap: 5px;
-                height: auto;
-                min-height: 100vh;
-            }
-            
-            .slide-left {
-                overflow-y: visible;
-                border-bottom: 2px solid rgba(100, 200, 255, 0.3);
-            }
-            
-            .slide-right {
-                overflow-y: visible;
-                align-items: flex-start;
-                padding-top: 15px;
-            }
-            
             .narration li {
                 font-size: 1rem;
                 line-height: 1.6;
@@ -4635,27 +4632,46 @@ of the AI-native era ✨</pre>
     <script>
         class PresentationController {
             constructor() {
+                // Defensive: Ensure slides exist
                 this.slides = Array.from(document.querySelectorAll('.slide'));
+                if (this.slides.length === 0) {
+                    console.error('No slides found - cannot initialize presentation');
+                    return;
+                }
+                
                 this.currentSlideIndex = 0;
                 this.isPlaying = false;
                 this.slideTimer = null;
                 this.countdownInterval = null;
                 
-                document.getElementById('totalSlides').textContent = this.slides.length;
+                // Ensure control elements exist before accessing them
+                const totalSlidesElement = document.getElementById('totalSlides');
+                if (totalSlidesElement) {
+                    totalSlidesElement.textContent = this.slides.length;
+                }
                 
                 this.setupEventListeners();
                 this.showSlide(0);
             }
             
             setupEventListeners() {
-                document.getElementById('prevBtn').addEventListener('click', () => this.previousSlide());
-                document.getElementById('nextBtn').addEventListener('click', () => this.nextSlide());
-                document.getElementById('playBtn').addEventListener('click', () => this.togglePlay());
-                document.getElementById('slideSlider').addEventListener('input', (e) => {
-                    const index = Math.floor((e.target.value / 100) * (this.slides.length - 1));
-                    this.showSlide(index);
-                });
+                const prevBtn = document.getElementById('prevBtn');
+                const nextBtn = document.getElementById('nextBtn');
+                const playBtn = document.getElementById('playBtn');
+                const slideSlider = document.getElementById('slideSlider');
                 
+                // Only attach listeners if elements exist
+                if (prevBtn) prevBtn.addEventListener('click', () => this.previousSlide());
+                if (nextBtn) nextBtn.addEventListener('click', () => this.nextSlide());
+                if (playBtn) playBtn.addEventListener('click', () => this.togglePlay());
+                if (slideSlider) {
+                    slideSlider.addEventListener('input', (e) => {
+                        const index = Math.floor((e.target.value / 100) * (this.slides.length - 1));
+                        this.showSlide(index);
+                    });
+                }
+                
+                // Always attach keyboard listeners
                 document.addEventListener('keydown', (e) => {
                     if (e.key === 'ArrowLeft') this.previousSlide();
                     if (e.key === 'ArrowRight') this.nextSlide();
@@ -4681,13 +4697,19 @@ of the AI-native era ✨</pre>
                 });
                 
                 this.currentSlideIndex = index;
-                document.getElementById('currentSlide').textContent = index + 1;
-                document.getElementById('slideSlider').value = (index / (this.slides.length - 1)) * 100;
+                
+                // Safely update DOM elements if they exist
+                const currentSlideEl = document.getElementById('currentSlide');
+                if (currentSlideEl) currentSlideEl.textContent = index + 1;
+                
+                const slideSlider = document.getElementById('slideSlider');
+                if (slideSlider) slideSlider.value = (index / (this.slides.length - 1)) * 100;
                 
                 // Update section name from slide data
                 const currentSlide = this.slides[index];
                 const sectionName = currentSlide.getAttribute('data-section') || 'Presentation';
-                document.getElementById('sectionName').textContent = sectionName;
+                const sectionNameEl = document.getElementById('sectionName');
+                if (sectionNameEl) sectionNameEl.textContent = sectionName;
                 
                 // Reset timer display to full duration (if not playing)
                 if (!this.isPlaying) {
@@ -4710,8 +4732,11 @@ of the AI-native era ✨</pre>
             }
             
             updateProgressBar() {
-                const progress = ((this.currentSlideIndex + 1) / this.slides.length) * 100;
-                document.getElementById('progressFill').style.width = progress + '%';
+                const progressFill = document.getElementById('progressFill');
+                if (progressFill) {
+                    const progress = ((this.currentSlideIndex + 1) / this.slides.length) * 100;
+                    progressFill.style.width = progress + '%';
+                }
             }
             
             togglePlay() {
@@ -4724,7 +4749,8 @@ of the AI-native era ✨</pre>
             
             play() {
                 this.isPlaying = true;
-                document.getElementById('playBtn').textContent = '⏸ Pause';
+                const playBtn = document.getElementById('playBtn');
+                if (playBtn) playBtn.textContent = '⏸ Pause';
                 this.startCountdown();
                 this.autoAdvanceSlides();
             }
@@ -4790,20 +4816,38 @@ of the AI-native era ✨</pre>
             
             stopPlay() {
                 this.isPlaying = false;
-                document.getElementById('playBtn').textContent = '▶ Play';
+                const playBtn = document.getElementById('playBtn');
+                if (playBtn) playBtn.textContent = '▶ Play';
                 if (this.slideTimer) clearTimeout(this.slideTimer);
                 if (this.countdownInterval) clearInterval(this.countdownInterval);
             }
         }
         
-        // Initialize on DOM ready, not page load (faster feedback)
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => {
-                new PresentationController();
-            });
-        } else {
-            // DOM already loaded (e.g., after navigation)
+        // Initialize on DOM ready with retry logic
+        function initializePresentation() {
+            const slides = Array.from(document.querySelectorAll('.slide'));
+            
+            // Ensure slides are loaded
+            if (slides.length === 0) {
+                // If no slides yet, try again in a small moment
+                setTimeout(initializePresentation, 100);
+                return;
+            }
+            
+            // All required elements present, initialize controller
             new PresentationController();
+        }
+        
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializePresentation);
+        } else {
+            // DOM already loaded (e.g., after navigation or slow script execution)
+            // Use requestAnimationFrame to ensure rendering is complete
+            if (typeof requestAnimationFrame !== 'undefined') {
+                requestAnimationFrame(initializePresentation);
+            } else {
+                initializePresentation();
+            }
         }
     </script>
 </body>
