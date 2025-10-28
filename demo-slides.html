@@ -4706,9 +4706,15 @@ of the AI-native era ✨</pre>
             }
         }
         
-        window.addEventListener('load', () => {
+        // Initialize on DOM ready, not page load (faster feedback)
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                new PresentationController();
+            });
+        } else {
+            // DOM already loaded (e.g., after navigation)
             new PresentationController();
-        });
+        }
     </script>
 </body>
 </html>
