@@ -298,9 +298,26 @@
         }
         
         @media (max-width: 640px) {
+            body {
+                overflow-y: auto;
+            }
+            
             .slide-container {
                 padding: 15px;
                 gap: 5px;
+                height: auto;
+                min-height: 100vh;
+            }
+            
+            .slide-left {
+                overflow-y: visible;
+                border-bottom: 2px solid rgba(100, 200, 255, 0.3);
+            }
+            
+            .slide-right {
+                overflow-y: visible;
+                align-items: flex-start;
+                padding-top: 15px;
             }
             
             .narration li {
