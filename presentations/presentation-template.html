@@ -563,11 +563,16 @@
             play() {
                 this.isPlaying = true;
                 document.getElementById('playBtn').textContent = '⏸ Pause';
-                this.autoAdvanceSlides();
                 this.startCountdown();
+                this.autoAdvanceSlides();
             }
             
             startCountdown() {
+                // Clear any existing countdown
+                if (this.countdownInterval) {
+                    clearInterval(this.countdownInterval);
+                }
+                
                 const slide = this.slides[this.currentSlideIndex];
                 const timerElement = slide.querySelector('.slide-timer');
                 if (!timerElement) return;
@@ -575,22 +580,28 @@
                 const duration = parseInt(slide.getAttribute('data-duration')) || 25;
                 let remaining = duration;
                 
+                // Update immediately
                 timerElement.textContent = `00:${remaining.toString().padStart(2, '0')}`;
                 
-                const countdownInterval = setInterval(() => {
+                this.countdownInterval = setInterval(() => {
                     remaining--;
-                    if (remaining >= 0) {
-                        timerElement.textContent = `00:${remaining.toString().padStart(2, '0')}`;
+                    
+                    // Stop if we've gone negative or not playing anymore
+                    if (remaining < 0 || !this.isPlaying) {
+                        clearInterval(this.countdownInterval);
+                        this.countdownInterval = null;
+                        return;
                     }
                     
-                    // Stop countdown if not playing or slide changed
-                    if (!this.isPlaying || this.slides[this.currentSlideIndex] !== slide) {
-                        clearInterval(countdownInterval);
+                    // Update display
+                    if (timerElement && timerElement.parentElement) {
+                        timerElement.textContent = `00:${remaining.toString().padStart(2, '0')}`;
+                    } else {
+                        // Timer element was removed, stop interval
+                        clearInterval(this.countdownInterval);
+                        this.countdownInterval = null;
                     }
                 }, 1000);
-                
-                // Store interval ID so we can clear it later
-                this.countdownInterval = countdownInterval;
             }
             
             autoAdvanceSlides() {
