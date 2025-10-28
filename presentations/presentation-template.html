@@ -477,7 +477,7 @@
                 this.currentSlideIndex = 0;
                 this.isPlaying = false;
                 this.slideTimer = null;
-                this.autoAdvanceTimer = null;
+                this.countdownInterval = null;
                 
                 document.getElementById('totalSlides').textContent = this.slides.length;
                 
@@ -527,6 +527,15 @@
                 const sectionName = currentSlide.getAttribute('data-section') || 'Presentation';
                 document.getElementById('sectionName').textContent = sectionName;
                 
+                // Reset timer display to full duration (if not playing)
+                if (!this.isPlaying) {
+                    const timerElement = currentSlide.querySelector('.slide-timer');
+                    const duration = parseInt(currentSlide.getAttribute('data-duration')) || 25;
+                    if (timerElement) {
+                        timerElement.textContent = `00:${duration.toString().padStart(2, '0')}`;
+                    }
+                }
+                
                 this.updateProgressBar();
             }
             
@@ -555,6 +564,33 @@
                 this.isPlaying = true;
                 document.getElementById('playBtn').textContent = '⏸ Pause';
                 this.autoAdvanceSlides();
+                this.startCountdown();
+            }
+            
+            startCountdown() {
+                const slide = this.slides[this.currentSlideIndex];
+                const timerElement = slide.querySelector('.slide-timer');
+                if (!timerElement) return;
+                
+                const duration = parseInt(slide.getAttribute('data-duration')) || 25;
+                let remaining = duration;
+                
+                timerElement.textContent = `00:${remaining.toString().padStart(2, '0')}`;
+                
+                const countdownInterval = setInterval(() => {
+                    remaining--;
+                    if (remaining >= 0) {
+                        timerElement.textContent = `00:${remaining.toString().padStart(2, '0')}`;
+                    }
+                    
+                    // Stop countdown if not playing or slide changed
+                    if (!this.isPlaying || this.slides[this.currentSlideIndex] !== slide) {
+                        clearInterval(countdownInterval);
+                    }
+                }, 1000);
+                
+                // Store interval ID so we can clear it later
+                this.countdownInterval = countdownInterval;
             }
             
             autoAdvanceSlides() {
@@ -564,7 +600,15 @@
                 this.slideTimer = setTimeout(() => {
                     if (this.currentSlideIndex < this.slides.length - 1) {
                         this.nextSlide();
+                        // Reset timer for new slide
+                        const newSlide = this.slides[this.currentSlideIndex];
+                        const newDuration = parseInt(newSlide.getAttribute('data-duration')) || 25;
+                        const timerElement = newSlide.querySelector('.slide-timer');
+                        if (timerElement) {
+                            timerElement.textContent = `00:${newDuration.toString().padStart(2, '0')}`;
+                        }
                         this.autoAdvanceSlides();
+                        this.startCountdown();
                     } else {
                         this.stopPlay();
                     }
@@ -574,7 +618,8 @@
             stopPlay() {
                 this.isPlaying = false;
                 document.getElementById('playBtn').textContent = '▶ Play';
-                if (this.slideTimer) clearInterval(this.slideTimer);
+                if (this.slideTimer) clearTimeout(this.slideTimer);
+                if (this.countdownInterval) clearInterval(this.countdownInterval);
             }
         }
         
