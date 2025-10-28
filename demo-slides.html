@@ -218,6 +218,9 @@
             align-items: center;
             gap: 30px;
             flex-wrap: wrap;
+            position: sticky;
+            bottom: 0;
+            z-index: 100;
         }
         
         .controls button, .controls input {
@@ -334,17 +337,31 @@
             }
             
             .controls {
-                flex-direction: column;
-                gap: 10px;
-                padding: 10px;
+                flex-direction: row;
+                gap: 6px;
+                padding: 8px 10px;
+                flex-wrap: nowrap;
+                background: rgba(15, 23, 42, 0.98);
             }
             
             .controls button {
-                width: 100%;
+                padding: 6px 8px;
+                font-size: 0.75rem;
+                flex: 0 1 auto;
+                white-space: nowrap;
             }
             
             .controls input[type="range"] {
-                width: 100%;
+                flex: 1;
+                min-width: 50px;
+                height: 3px;
+                padding: 0;
+            }
+            
+            .slide-counter {
+                font-size: 0.75rem;
+                min-width: 45px;
+                padding: 0;
             }
         }
         
